@@ -21,7 +21,7 @@ class App extends Component {
                 <Button />
                 <p>users</p>
                 {this.state.users.map(user =>
-                    <div key={user.id}>
+                    <div key={user.user_id}>
                         <p>name: {user.user_lastname}</p>
                         </div>
                 )}
