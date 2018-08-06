@@ -97,6 +97,18 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        proxy: [{
+            path: ['/all'],
+            target: 'http://localhost:8080',
+            bypass: function(req, res, proxyOptions) {
+                if(req.headers.accept.indexOf('html') !== -1){
+                    console.log("skipping proxy for browser request");
+                    return '/index.html';
+                }
+            }
+        }]
+    },
     plugins: [
         new HtmlWebPackPlugin({
             template: "./src/index.html",
