@@ -1,11 +1,7 @@
-import React from 'react';
-require('./Logo.scss');
+import React from "react";
+require("./Logo.scss");
 
 const Logo = () => {
-    return (
-        <div className="Logo">
-            Iko!
-        </div>
-    )
-}
+  return <div className="Logo">iko!</div>;
+};
 export default Logo;

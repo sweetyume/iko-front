@@ -1,12 +1,14 @@
-import React from 'react';
-import Nav from '../Nav/Nav';
+import React from "react";
+import Logo from "../Logo/Logo";
+import Nav from "../Nav/Nav";
+require("./Header.scss");
 
 const Header = () => {
-    return (
-        <header>
-            <Nav/>
-        </header>
-    )
-}
-
+  return (
+    <div className="Header">
+      <Logo />
+      <Nav />
+    </div>
+  );
+};
 export default Header;

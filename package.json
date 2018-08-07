@@ -37,12 +37,17 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "@material-ui/core": "^1.4.3",
+    "@material-ui/icons": "^2.0.1",
     "autoprefixer": "^8.6.5",
+    "axios": "^0.18.0",
     "clean-webpack-plugin": "^0.1.19",
+    "extract-text-webpack-plugin": "^3.0.2",
     "image-webpack-loader": "^4.3.1",
     "imagemin": "^5.3.1",
     "postcss-loader": "^2.1.6",
     "react-router-dom": "^4.3.1",
+    "reactjs-popup": "^1.2.0",
     "resolve-url-loader": "^2.3.0"
   },
   "browserslist": [

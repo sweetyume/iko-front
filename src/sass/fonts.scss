@@ -2,3 +2,8 @@
     font-family: 'Bonjour';
     src: url('assets/fonts/Bonjour-Regular.otf') format('truetype')
 }
+
+@include font-face {
+    font-family: 'AvenirLight';
+    src: url('assets/fonts/AvenirLight.otf') format('truetype')
+}
