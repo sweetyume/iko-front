@@ -1,0 +1,38 @@
+// $font-face: Arial, sans-serif;
+// $primary-color: blue;
+// body {
+//   font-family: $font-face;
+//   color: $primary-color;
+// }
+body {
+  background-color: #FFD320;
+  padding: 20px;
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Bonjour'
+}
+
+h2,
+h3,
+p,
+ul,
+li {
+  font-family: sans-serif;
+}
+
+.content {
+  background-color: #FFF;
+  padding: 20px;
+}
+
+.content h2 {
+  padding: 0;
+  margin: 1rem auto;
+  text-align: center
+}
+
+.content li {
+  margin-bottom: 10px;
+}

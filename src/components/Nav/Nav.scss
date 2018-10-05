@@ -1,10 +1,22 @@
 .Nav {
-    display: block;
-    background-color: #FFD320;
-    padding: 1rem;
-    margin: 0 auto;
-    a {
-        text-decoration: none; 
-        color: white;
+    &_List {
+        padding: 0;
+        &_Item {
+            display: inline;
+            list-style-type: none;
+            margin: 0;
+            >a {
+                color: #FFF;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 20px;
+                display: inline-block;
+            }
+        }
     }
+}
+
+.active {
+    // background-color: #14CCB9FF;
+    border-bottom: 0.5rem solid #14CCB9FF;
 }
