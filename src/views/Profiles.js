@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Section from "../components/Section/Section";
+
 require("./Profiles.scss");
 
 class Profiles extends Component {
@@ -17,8 +19,7 @@ class Profiles extends Component {
   }
   render() {
     return (
-      <div className="Profiles">
-        <h2 className="Profiles_Title">Travellers</h2>
+      <Section className="Profiles" title="Profiles">
         <div className="Profiles_Cards_Container">
           {this.state.users.map(user => (
             <div className="Profiles_Cards_Container_Item" key={user.user_id}>
@@ -35,7 +36,7 @@ class Profiles extends Component {
             </div>
           ))}
         </div>
-      </div>
+      </Section>
     );
   }
 }
