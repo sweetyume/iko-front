@@ -1,0 +1,17 @@
+.Section {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 2rem;
+    justify-content: center;
+    text-align: center;
+
+    &__Title {
+        font-size: 2.2rem;
+        padding: 0;
+        margin: 1rem auto;
+        text-align: center;
+        color: #14CCB9;
+    }
+}

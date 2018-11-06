@@ -1,9 +1,11 @@
-import React from 'react';
-require ('./Button.scss');
+import React from "react";
+require("./Button.scss");
 
-const Button = () => {
-    return (
-        <button className="Button">Go</button> 
-    )
-}
+const Button = props => {
+  return (
+    <button className="Button" onClick={props.onClick}>
+      {props.label}
+    </button>
+  );
+};
 export default Button;
