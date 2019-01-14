@@ -22,16 +22,16 @@ class Profiles extends Component {
       <Section className="Profiles" title="Profiles">
         <div className="Profiles_Cards_Container">
           {this.state.users.map(user => (
-            <div className="Profiles_Cards_Container_Item" key={user.user_id}>
+            <div className="Profiles_Cards_Container_Item" key={user.id}>
               <img
                 src="https://avataaars.io/?avatarStyle=Circle&topType=Turban&accessoriesType=Blank&hatColor=Red&facialHairType=MoustacheFancy&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=Gray02&graphicType=Deer&eyeType=Cry&eyebrowType=SadConcerned&mouthType=Tongue&skinColor=Pale"
                 alt=""
               />
               <div className="Profiles_Cards_Container_Item_Content">
                 <h3>
-                  {user.user_lastname} {user.user_firstname}
+                  {user.lastname} {user.firstname}
                 </h3>
-                <p>{user.user_email}</p>
+                <p>{user.email}</p>
               </div>
             </div>
           ))}

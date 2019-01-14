@@ -18,12 +18,14 @@ export class MapView extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng];
+    const searchComponent = props => <ReactLeafletSearch position="topleft" />;
+
     return (
       <div>
         <Map style={{ height: "50vh" }} center={position} zoom={10}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <Marker position={position}>
             <Popup>
