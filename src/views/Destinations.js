@@ -1,39 +1,51 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import Continent from "../components/Continent/Continent";
 import Section from "../components/Section/Section";
-
-require("./Profiles.scss");
 
 class Destinations extends Component {
   constructor() {
     super();
-    this.state = { countries: [] };
+    this.state = { continent: [] };
   }
-  componentDidMount() {
-    axios
-      .get("https://restcountries.eu/rest/v2/all")
-      .then(res => {
-        const countries = res.data;
-        this.setState({ countries });
-      })
-      .catch(error => error);
+  showInfo(event) {
+    let country = event.target.value.toLowerCase();
+    country === "america" ? (country = "americas") : (country = country);
+
+    fetch("https://restcountries.eu/rest/v2/region/" + country)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ continent: data });
+      });
   }
+  //   componentDidMount() {
+  //     axios
+  //       .get("https://restcountries.eu/rest/v2/all")
+  //       .then(res => {
+  //         const countries = res.data;
+  //         this.setState({ countries });
+  //       })
+  //       .catch(error => error);
+  //   }
   render() {
     return (
-      <Section className="Profiles" title="Destinations">
-        <div className="Profiles_Cards_Container">
-          {this.state.countries.map(country => (
-            <div
-              className="Profiles_Cards_Container_Item"
-              key={country.Alpha3Code}
-            >
+      <Section className="" title="Destinations">
+        <div className="">
+          <form />
+          <Continent
+            showInfo={this.showInfo.bind(this)}
+            countries={this.state.continent}
+          />
+
+          {/* {this.state.countries.map(country => (
+            <div className="" key={country.name}>
               <img src={country.flag} height="20px" width="20px" />
-              <div className="Profiles_Cards_Container_Item_Content">
+              <div className="">
                 <h3>{country.name}</h3>
+                <p>{country.Region}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </Section>
     );

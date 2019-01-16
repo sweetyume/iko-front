@@ -98,7 +98,7 @@ module.exports = {
   devServer: {
     proxy: [
       {
-        path: ["/all", "/users"],
+        path: ["/", "/all", "/users"],
         target: "http://localhost:8086",
         secure: false,
         changeOrigin: true,

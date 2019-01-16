@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../Logo/Logo";
+// import Logo from "../Logo/Logo";
 
 require("./Nav.scss");
 
@@ -15,6 +15,9 @@ const Nav = () => {
         </li>
         <li className="Nav_List_Item">
           <NavLink to="/profiles">Profiles</NavLink>
+        </li>
+        <li className="Nav_List_Item">
+          <NavLink to="/articles">Articles</NavLink>
         </li>
         <li className="Nav_List_Item">
           <NavLink to="/destinations">Destinations</NavLink>

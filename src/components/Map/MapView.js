@@ -18,7 +18,6 @@ export class MapView extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng];
-    const searchComponent = props => <ReactLeafletSearch position="topleft" />;
 
     return (
       <div>
