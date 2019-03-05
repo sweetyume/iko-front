@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import Section from "../components/Section/Section";
-import MapView from "../components/Map/MapView";
+import axios from "axios";
+
+require("./Home.scss");
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <Section className="Hello" title="Hello">
@@ -13,7 +20,6 @@ class Home extends Component {
           molestie. Cum sociis natoque penatibus et magnis dis parturient
           montes, nascetur ridiculus mus.
         </p>
-        <MapView />
       </Section>
     );
   }

@@ -28,6 +28,9 @@ const Nav = () => {
         <li className="Nav_List_Item">
           <NavLink to="/register">Register</NavLink>
         </li>
+        <li className="Nav_List_Item">
+          <NavLink to="/login">Connexion</NavLink>
+        </li>
       </ul>
     </nav>
   );

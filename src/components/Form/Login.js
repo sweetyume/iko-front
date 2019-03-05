@@ -6,54 +6,40 @@ import axios from "axios";
 
 require("./Register.scss");
 
-class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
       email: "",
       password: ""
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = event => {
     console.log(event.target);
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = async event => {
     event.preventDefault();
-    const user = {
-      username: this.state.username,
-      login: this.state.email,
-      password: this.state.password
-    };
-    console.log({ user }, "lala", this.state);
-
-    axios
-      .post("/register", { user })
-      .then(res => {
-        console.log("useradd: " + res);
-        this.props.history.push("/");
-      })
-      .catch(error => console.error(error));
-  }
+    let login = null;
+    try {
+      login = await axios.post("/login", {
+        login: this.state.email,
+        password: this.state.password
+      });
+      console.log("Login: ", login.data);
+      this.props.history.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   render() {
     return (
       <Section className="Register" title="Inscrivez-vous">
         <form className="Register__Form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            placeholder="nom"
-            onChange={this.handleChange}
-          />
           <input
             type="email"
             name="email"
@@ -68,13 +54,13 @@ class Register extends Component {
             placeholder="Mot de passe"
             onChange={this.handleChange}
           />
-          <Button label="Je m'inscris" type="submit" />
+          <Button label="Se connecter" type="submit" />
           <p className="Register__Form__Message">
-            Déjà membre? <a href="#">Connectez-vous</a>
+            Pas encore inscris? <a href="#">Inscrivez-vous</a>
           </p>
         </form>
       </Section>
     );
   }
 }
-export default withRouter(Register);
+export default withRouter(Login);

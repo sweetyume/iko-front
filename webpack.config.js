@@ -7,14 +7,17 @@ const path = require("path");
 const env = process.env.NODE_ENV;
 
 module.exports = {
-  mode: env || "development",
+  entry: ["@babel/polyfill", "./src/index.js"],
+  mode: "development",
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
+        loader: "babel-loader",
+        options: {
+          presets: ["env", "react"],
+          plugins: ["transform-class-properties"]
         }
       },
       {

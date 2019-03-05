@@ -3,27 +3,38 @@ import axios from "axios";
 
 import Section from "../components/Section/Section";
 import Card from "../components/Card/Card";
+import Article from "./Article";
 require("./Articles.scss");
 
 class Articles extends Component {
-  constructor() {
-    super();
-    this.state = { articles: [] };
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: []
+    };
   }
-  componentDidMount() {
-    axios
+  async componentDidMount() {
+    await axios
       .get("/articles")
       .then(res => res.data)
       .then(articles => this.setState({ articles }))
       .catch(error => error);
   }
   render() {
+    const { articles } = this.state;
     return (
       <Section className="Articles" title="Articles">
-        <div className="Articles_Cards_Container">
-          {this.state.articles.map(article => (
-            <Card article={article} key={article.id} />
-          ))}
+        <Article />
+        <div className="Articles_Container">
+          {this.state &&
+            articles &&
+            articles.map((article, index) => (
+              <Card
+                className-="Articles_Container_Card"
+                articleId={article.id}
+                key={index}
+              />
+            ))}
         </div>
       </Section>
     );

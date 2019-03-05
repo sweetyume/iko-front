@@ -1,10 +1,17 @@
 .Nav {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 1em;
+    align-items: center;
+
     &_List {
         padding: 0;
+
         &_Item {
             display: inline;
             list-style-type: none;
             margin: 0;
+
             >a {
                 color: #FFF;
                 text-decoration: none;

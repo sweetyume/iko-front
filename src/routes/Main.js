@@ -6,6 +6,7 @@ import Profiles from "../views/Profiles";
 import Articles from "../views/Articles";
 import Destinations from "../views/Destinations";
 import Register from "../components/Form/Register";
+import Login from "../components/Form/Login";
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
         <Route path="/contact" component={Contact} />
         <Route path="/destinations" component={Destinations} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
       </Switch>
     </div>
   );
