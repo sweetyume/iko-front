@@ -1,50 +1,193 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import Suggestions from './Suggestions'
+import React from 'react';
 
-const API_URL = "https://restcountries.eu/rest/v2/all"
+export class SearchBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchWord: '',
+			countryPropositions: '',
+			propositionsList: '',
+			index: 0
+		};
+	}
 
-class SearchBar extends Component {
-  state = {
-    query: '',
-    results: []
-  }
+	handlSearchOnChange = event => {
+		let word = event.target.value;
+		this.setState({
+			searchWord: word
+		});
 
-  getInfo = () => {
-    axios.get(`${API_URL}?&prefix=${this.state.query}&limit=7`)
-      .then(({ data }) => {
-        this.setState({
-          results: data.data
-        })
-      })
-  }
+		word.length >= 3 ? this.filterCountriesData(word) : null;
+	};
 
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
-        }
-      } else if (!this.state.query) {
-      }
-    })
-  }
+	filterCountriesData = searchWord => {
+		const countries = this.props.countriesData.slice();
+		let countriesProposition = countries
+			.filter(e => {
+				return e.country[0].name
+					.toLowerCase()
+					.includes(searchWord.toLowerCase());
+			})
+			.map(e => {
+				return e.country[0].name;
+			});
 
-  render() {
-    return (
-      <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
-        />
-        <Suggestions results={this.state.results} />
-      </form>
-    )
-  }
+		this.createPropositionList(countriesProposition, searchWord);
+	};
+
+	createPropositionList = (countries, searchWord) => {
+		let propositions =
+			countries.length >= 1 ? (
+				countries.map((country, id) => {
+					let word = searchWord.toLowerCase();
+					let startIndex = country.toLowerCase().indexOf(word);
+					let endIndex = word.length + startIndex;
+					let begining = country.slice(0, startIndex);
+					let middle = country.slice(startIndex, endIndex);
+					let end = country.slice(word.length + startIndex);
+					return (
+						<li
+							key={country + id}
+							onClick={e => this.handleOnChose(e, country)}
+							className="searchbar__list__item"
+						>
+							{begining}
+							<span style={{ fontWeight: 'bold', fontFamily: 'inherit' }}>
+								{middle}
+							</span>
+							{end}
+						</li>
+					);
+				})
+			) : (
+				<li className="searchbar__list__item">This country doesn't exist.</li>
+			);
+
+		this.setState({
+			countryPropositions: countries,
+			propositionsList: propositions
+		});
+	};
+
+	handleOnChose = (event, el) => {
+		event.preventDefault();
+		const { handleChosenCountry } = this.props;
+
+		if (typeof handleChosenCountry == 'function') {
+			handleChosenCountry(el);
+		}
+		this.setState({
+			countryPropositions: '',
+			searchWord: ''
+		});
+	};
+
+	handleOnKeyPress = event => {
+		const key = event.keyCode;
+		let indexLocal = this.state.index;
+		if (this.state.propositionsList.length) {
+			const propoList = this.refs.propList.children;
+			switch (key) {
+				case 40:
+					if (indexLocal < propoList.length && indexLocal > 0) {
+						propoList[indexLocal - 1].classList.remove('activeKey');
+						propoList[indexLocal].classList.add('activeKey');
+						indexLocal = indexLocal + 1;
+					} else if (indexLocal < propoList.length && indexLocal === 0) {
+						propoList[indexLocal].classList.add('activeKey');
+						indexLocal = indexLocal + 1;
+					}
+					break;
+				case 38:
+					if (indexLocal > 0) {
+						propoList[indexLocal - 1].classList.remove('activeKey');
+						if (indexLocal > 1) {
+							indexLocal = indexLocal - 1;
+						}
+						propoList[indexLocal - 1].classList.add('activeKey');
+					}
+					break;
+				case 13:
+					propoList[indexLocal - 1].classList.remove('activeKey');
+					this.handleOnChose(event, propoList[indexLocal - 1].textContent);
+					indexLocal = 0;
+					break;
+				default:
+					indexLocal = 0;
+			}
+		}
+		this.setState({
+			index: indexLocal
+		});
+	};
+
+	handleClickOutside(event) {
+		const domNode = this.refs.propList;
+
+		if (!domNode || !domNode.contains(event.target)) {
+			this.setState({
+				countryPropositions: '',
+				searchWord: ''
+			});
+		}
+	}
+
+	handleOnMouseEnter(event) {
+		const domNode = this.refs.propList.children;
+		for (let i = 0; i < domNode.length; i++) {
+			if (domNode[i].classList.contains('activeKey')) {
+				domNode[i].classList.remove('activeKey');
+			}
+		}
+		this.setState({
+			index: 0
+		});
+	}
+
+	componentDidMount() {
+		document.addEventListener(
+			'click',
+			this.handleClickOutside.bind(this),
+			true
+		);
+		this.refs.propList.addEventListener(
+			'mouseover',
+			this.handleOnMouseEnter.bind(this),
+			true
+		);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener(
+			'click',
+			this.handleClickOutside.bind(this),
+			true
+		);
+	}
+
+	render() {
+		const { searchWord, propositionsList } = this.state;
+		return (
+			<section className="searchbar">
+				<input
+					type="text"
+					className="searchbar__input"
+					value={searchWord}
+					onChange={this.handlSearchOnChange}
+					onKeyDown={this.handleOnKeyPress}
+					tabIndex="0"
+					placeholder="Type Country name in english"
+				/>
+				<ul
+					style={{ display: searchWord.length >= 3 ? 'block' : 'none' }}
+					className="searchbar__list"
+					ref="propList"
+				>
+					{propositionsList}
+				</ul>
+			</section>
+		);
+	}
 }
 
-export default SearchBar
-
+export default SearchBar;

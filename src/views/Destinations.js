@@ -1,59 +1,204 @@
-import React from "react";
-import axios from 'axios'
+import React from 'react';
+import { Transition, Spring } from 'react-spring';
+import { CountryInfo } from '../components/Country/CountryInfo';
+import SearchBar from '../components/SearchBar/SearchBar';
+import { SimpleMap } from '../components/Map/Map';
 
-class Destinations extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            searchText: "",
-            country: [],
-            activeSuggestions: 0,
-            filteredSuggestions: [],
-            showSuggestions: false
-        };
-    }
-    onChangeHandle = (event) => {
-        this.setState({ searchText: event.target.value });
-    }
-    onSubmit = (event) => {
-        event.preventDefault();
-        const { searchText } = this.state;
-        fetch(`https://restcountries.eu/rest/v1/name/${searchText}`)
-        .then(response => response.json())
-        .then( data => {
-                this.setState({ country: data });
-            }
-        );
-    }
+export class Destinations extends React.Component {
+	state = {
+		countriesList: [],
+		matchedCountries: [],
+		renderSuggestions: false,
+		countryDataToDisplay: '',
+		chosenCountry: 'Japan',
+		countriesData: ''
+	};
 
-    render() {
-        let response = JSON.stringify(this.state.country);
-        return (
-            <main>
-                <section class="search">
-                    <form onSubmit={this.onSubmit}>
-                        <h2>Country search engine</h2>
-                        <input 
-                            id="country-name" 
-                            placeholder="e.g. Poland" 
-                            type="text" 
-                            onChange={this.onChangeHandle}
-                            value={this.state.searchText}
-                        />
-                    </form>
-                </section>
-             <section class="results">
-               <div class="country-info">
-                  <ul id="countries">
-                    {this.state.country.map(country => <li key={country.name}><p>{country .name}</p>
-                    <p>{country.region}</p></li>)}
-                  </ul>
-              </div>
-            </section>
-          
-            </main>
-        );
-    }
+	componentDidMount() {
+		fetch(`https://restcountries.eu/rest/v2/all`)
+			.then(res => {
+				return res.json();
+			})
+			.then(data => {
+				console.log(data);
+				const countriesData = data.map(country => {
+					return {
+						country: [
+							{
+								name: country.name,
+								flag: country.flag,
+								latlng: country.latlng,
+								capital: country.captial,
+								region: country.region,
+								area: country.area,
+								subregion: country.subregion,
+								population: country.population,
+								currencies: country.currencies,
+								languages: country.currencies
+							}
+						]
+					};
+				});
+				this.setState({ countriesData }, () => {
+					const country = this.state.chosenCountry;
+					this.getCountryData(country);
+				});
+			});
+	}
+
+	handleChosenCountry = country => {
+		this.setState({
+			chosenCountry: country
+		});
+
+		this.getCountryData(country);
+	};
+
+	getCountryData = chosenCountry => {
+		const { countriesData } = this.state;
+		let countryDataToDisplay = [];
+		if (countriesData) {
+			countryDataToDisplay = countriesData
+				.filter(e => {
+					return e.country[0].name.includes(chosenCountry);
+				})
+				.map(e => {
+					return e.country[0];
+				});
+		}
+		this.setState({
+			countryDataToDisplay: countryDataToDisplay
+		});
+	};
+	// getCountriesList = () => {
+	// 	return fetch(`https://restcountries.eu/rest/v2/all`)
+	// 		.then(res => {
+	// 			return res.json();
+	// 		})
+	// 		.then(data => {
+	// 			console.log(data);
+	// 			const countries = data.map(country => {
+	// 				return country.name;
+	// 			});
+	// 			return countries;
+	// 		});
+	// };
+	onChange = async e => {
+		const userInput = e.target.value;
+		if (userInput.length > 1) {
+			const countriesList = await this.getCountriesList(userInput);
+			// console.log("countriesList", countriesList);
+			const matchedCountries = countriesList.filter(country => {
+				return country.toLowerCase().includes(userInput.toLowerCase());
+			});
+			console.log('matchedCountries', matchedCountries);
+			this.setState({
+				matchedCountries: matchedCountries
+			});
+		} else {
+			this.setState({
+				matchedCountries: []
+			});
+		}
+	};
+
+	renderSuggestions = () => {
+		this.setState({
+			renderSuggestions: true
+		});
+	};
+
+	hideSuggestions = () => {
+		this.setState({
+			renderSuggestions: false
+		});
+	};
+
+	render() {
+		const { countriesData, chosenCountry, countryDataToDisplay } = this.state;
+		console.log(countryDataToDisplay);
+		const center = countryDataToDisplay
+			? {
+					lat: countryDataToDisplay[0].latlng[0],
+					lng: countryDataToDisplay[0].latlng[1]
+			  }
+			: null;
+
+		return (
+			<div className="App">
+				{/* <input
+						type="text"
+						name="search"
+						autoComplete="off"
+						onChange={this.onChange}
+						onFocus={this.renderSuggestions}
+						onBlur={this.hideSuggestions}
+					/> */}
+				<div className="content">
+					{countriesData ? (
+						<SearchBar
+							countriesData={countriesData}
+							handleChosenCountry={this.handleChosenCountry}
+						/>
+					) : (
+						<p>Loading ...</p>
+					)}
+					{chosenCountry && countryDataToDisplay ? (
+						<section className="countryinfo">
+							<div className="countryinfo__container">
+								<CountryInfo countryInfo={countryDataToDisplay} />
+								<div
+									style={{
+										width: '100%',
+										height: '300px',
+										float: 'left'
+									}}
+								>
+									<SimpleMap centerMap={center} />
+								</div>
+							</div>
+						</section>
+					) : null}
+				</div>
+				{/* <div>
+						{this.state.renderSuggestions && (
+							<div>
+								{this.state.matchedCountries.map((country, index) => (
+									<Link to="/register" key={index}>
+										<Country key={index} name={country} />
+									</Link>
+								))}
+							</div>
+						)}
+					</div> */}
+				{/* <Transition
+						items={this.state.renderSuggestions}
+						from={{ opacity: 0, height: 0 }}
+						enter={{ opacity: 1, height: 100 }}
+						leave={{ opacity: 0, height: 0 }}
+					>
+						{show =>
+							show &&
+							(props => {
+								return this.state.matchedCountries.map((country, index) =>
+									index < 5 ? (
+										<Spring
+											to={{ opacity: 1, height: 100 }}
+											from={{ opacity: 0, height: 0 }}
+											delay={500}
+										>
+											{props => {
+												return <Country name={country.name} />;
+											}}
+										</Spring>
+									) : null
+								);
+							})
+						}
+					</Transition> */}
+			</div>
+		);
+	}
 }
 
-export default Destinations
+export default Destinations;
