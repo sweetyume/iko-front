@@ -24,7 +24,7 @@ class Articles extends Component {
     const { articles } = this.state;
     return (
       <Section className="Articles" title="Articles">
-        <Article />
+        {/* <Article /> */}
         <div className="Articles_Container">
           {this.state &&
             articles &&

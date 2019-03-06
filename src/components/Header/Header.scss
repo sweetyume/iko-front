@@ -2,5 +2,32 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    align-items: center;
+
+    // background: #FFD320;
+    &__Logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        text-align: center;
+        border-radius: 50%;
+        // border: 1px solid gray;
+        // width: 5rem;
+        // height: 5rem;
+        font-family: 'Bonjour';
+        color: black;
+        text-decoration: none;
+    }
+
+    &__Right {
+        &__Button {
+            .Button {
+                margin: 0 0.5rem 0 0;
+                padding: 0.7rem;
+            }
+        }
+    }
+
 }

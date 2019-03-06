@@ -8,9 +8,12 @@ import Destinations from "../views/Destinations";
 import Register from "../components/Form/Register";
 import Login from "../components/Form/Login";
 
+// const style = {
+//   height: "75vh"
+// };
 const Main = () => {
   return (
-    <div className="content">
+    <main className="main">
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/profiles" component={Profiles} />
@@ -20,7 +23,7 @@ const Main = () => {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
       </Switch>
-    </div>
+    </main>
   );
 };
 export default Main;

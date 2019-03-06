@@ -1,55 +1,59 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Continent from "../components/Continent/Continent";
-import Section from "../components/Section/Section";
+import React from "react";
+import axios from 'axios'
 
-class Destinations extends Component {
-  constructor() {
-    super();
-    this.state = { continent: [] };
-  }
-  showInfo(event) {
-    let country = event.target.value.toLowerCase();
-    country === "america" ? (country = "americas") : (country = country);
+class Destinations extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            searchText: "",
+            country: [],
+            activeSuggestions: 0,
+            filteredSuggestions: [],
+            showSuggestions: false
+        };
+    }
+    onChangeHandle = (event) => {
+        this.setState({ searchText: event.target.value });
+    }
+    onSubmit = (event) => {
+        event.preventDefault();
+        const { searchText } = this.state;
+        fetch(`https://restcountries.eu/rest/v1/name/${searchText}`)
+        .then(response => response.json())
+        .then( data => {
+                this.setState({ country: data });
+            }
+        );
+    }
 
-    fetch("https://restcountries.eu/rest/v2/region/" + country)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ continent: data });
-      });
-  }
-  //   componentDidMount() {
-  //     axios
-  //       .get("https://restcountries.eu/rest/v2/all")
-  //       .then(res => {
-  //         const countries = res.data;
-  //         this.setState({ countries });
-  //       })
-  //       .catch(error => error);
-  //   }
-  render() {
-    return (
-      <Section className="" title="Destinations">
-        <div className="">
-          <form />
-          <Continent
-            showInfo={this.showInfo.bind(this)}
-            countries={this.state.continent}
-          />
-
-          {/* {this.state.countries.map(country => (
-            <div className="" key={country.name}>
-              <img src={country.flag} height="20px" width="20px" />
-              <div className="">
-                <h3>{country.name}</h3>
-                <p>{country.Region}</p>
+    render() {
+        let response = JSON.stringify(this.state.country);
+        return (
+            <main>
+                <section class="search">
+                    <form onSubmit={this.onSubmit}>
+                        <h2>Country search engine</h2>
+                        <input 
+                            id="country-name" 
+                            placeholder="e.g. Poland" 
+                            type="text" 
+                            onChange={this.onChangeHandle}
+                            value={this.state.searchText}
+                        />
+                    </form>
+                </section>
+             <section class="results">
+               <div class="country-info">
+                  <ul id="countries">
+                    {this.state.country.map(country => <li key={country.name}><p>{country .name}</p>
+                    <p>{country.region}</p></li>)}
+                  </ul>
               </div>
-            </div>
-          ))} */}
-        </div>
-      </Section>
-    );
-  }
+            </section>
+          
+            </main>
+        );
+    }
 }
 
-export default Destinations;
+export default Destinations

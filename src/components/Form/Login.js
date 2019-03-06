@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import Section from "../Section/Section";
 import { withRouter } from "react-router-dom";
@@ -38,7 +39,7 @@ class Login extends Component {
   };
   render() {
     return (
-      <Section className="Register" title="Inscrivez-vous">
+      <Section className="Register" title="Connectez-vous">
         <form className="Register__Form" onSubmit={this.handleSubmit}>
           <input
             type="email"
@@ -56,7 +57,7 @@ class Login extends Component {
           />
           <Button label="Se connecter" type="submit" />
           <p className="Register__Form__Message">
-            Pas encore inscris? <a href="#">Inscrivez-vous</a>
+            Pas encore inscris? <Link to="/register">Inscrivez-vous</Link>
           </p>
         </form>
       </Section>

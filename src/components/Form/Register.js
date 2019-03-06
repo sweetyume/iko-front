@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import Section from "../Section/Section";
 import { withRouter } from "react-router-dom";
@@ -65,12 +66,12 @@ class Register extends Component {
             type="password"
             name="password"
             value={this.state.password}
-            placeholder="Mot de passe"
+            placeholder="Mot de passpe"
             onChange={this.handleChange}
           />
           <Button label="Je m'inscris" type="submit" />
           <p className="Register__Form__Message">
-            Déjà membre? <a href="#">Connectez-vous</a>
+            Déjà membre? <Link to="/login">Connectez-vous</Link>
           </p>
         </form>
       </Section>

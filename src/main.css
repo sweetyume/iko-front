@@ -1,4 +1,7 @@
+html,
 body {
-    line-height: 2;
-    color: pink;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    margin: 0;
 }
