@@ -1,54 +1,48 @@
 html,
 body {
-  box-sizing: border-box;
-  height: 100vh;
-  overflow: auto;
-  margin: 0;
+	box-sizing: border-box;
+	// height: 100vh;
+	// overflow: auto;
+	// margin: 0;
+	display: grid;
+	margin: 0;
+	font-family: 'Roboto';
+	height: 100%;
+	overflow: auto;
+	text-align: center;
+	grid-template-areas:
+		'header '
+		'nav '
+		'main'
+		'footer';
 }
 
 .App {
-  margin: 0;
-  font-family: 'Roboto';
-  height: 100%;
-  overflow: auto;
-  text-align: center;
-  // display: grid;
-  // grid-template: 1fr 50px / repeat(12, 1fr);
-  // grid-template-areas: "header header header"
-  // "nav nav nav"
-  // "main main main"
+	// display: grid;
+	// margin: 0;
+	// font-family: 'Roboto';
+	// height: 100%;
+	// overflow: auto;
+	// text-align: center;
+	// grid-template-areas:
+	// 	'header '
+	// 	'nav '
+	// 	'main'
+	// 	'footer';
 }
 
-.header {
-  grid-area: header;
+.Header {
+	grid-area: header;
 }
 
-.nav {
-  grid-area: nav;
+.Nav {
+	grid-area: nav;
 }
 
-.main {
-  grid-area: main;
+.Main {
+	grid-area: main;
+	text-align: center;
 }
-
-// body {
-//   // background-color: #FFD320;
-//   // padding: 20px;
-//   margin: 0;
-// }
-
-// h1 {
-//   font-family: 'Bonjour'
-// }
-
-// h2,
-// h3,
-// p,
-// ul,
-// li {
-//   font-family: sans-serif;
-// }
-
-// .content li {
-//   margin-bottom: 10px;
-// }
+.Footer {
+	grid-area: footer;
+}

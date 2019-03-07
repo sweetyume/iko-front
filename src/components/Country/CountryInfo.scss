@@ -1,0 +1,84 @@
+.CountryInfo {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/174608/photo-1513635269975-59663e0ac1ad.jpeg") no-repeat center center;
+    padding: 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+
+    &_Location {
+        &_Name {
+            background-color: rgba(white, .2);
+            border: 0.4rem solid white;
+            color: white;
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 0;
+            margin-top: 0;
+            padding: 1.8rem 2rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 0 rgba(#222b37, .25);
+        }
+    }
+
+    &_Flag {
+
+        // overflow: hidden;
+        // width: 8rem;
+        // height: 8rem;
+        // border-radius: 50%;
+        // align-self: center;
+        img {
+            object-fit: cover;
+            width: 7rem;
+            height: 7rem;
+            border-radius: 50%;
+        }
+    }
+
+    &_Infos {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 5px 25px 0 rgba(#222b37, .2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 2rem;
+        padding: 1.5rem 2rem;
+
+        span {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+
+            &:first-of-type {
+                color: #a0a0a0;
+                font-weight: 400;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+            }
+        }
+
+        &_Details {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 5rem;
+
+            &:not(:last-of-type) {
+                border-right: 1px solid #e0e0e0;
+            }
+
+            &_Currency {
+                display: flex;
+
+                &_Symbol {
+                    margin-left: 0.2rem;
+                }
+            }
+        }
+    }
+}

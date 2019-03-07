@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./SearchBar.scss');
+
 export class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -82,45 +84,6 @@ export class SearchBar extends React.Component {
 		});
 	};
 
-	handleOnKeyPress = event => {
-		const key = event.keyCode;
-		let indexLocal = this.state.index;
-		if (this.state.propositionsList.length) {
-			const propoList = this.refs.propList.children;
-			switch (key) {
-				case 40:
-					if (indexLocal < propoList.length && indexLocal > 0) {
-						propoList[indexLocal - 1].classList.remove('activeKey');
-						propoList[indexLocal].classList.add('activeKey');
-						indexLocal = indexLocal + 1;
-					} else if (indexLocal < propoList.length && indexLocal === 0) {
-						propoList[indexLocal].classList.add('activeKey');
-						indexLocal = indexLocal + 1;
-					}
-					break;
-				case 38:
-					if (indexLocal > 0) {
-						propoList[indexLocal - 1].classList.remove('activeKey');
-						if (indexLocal > 1) {
-							indexLocal = indexLocal - 1;
-						}
-						propoList[indexLocal - 1].classList.add('activeKey');
-					}
-					break;
-				case 13:
-					propoList[indexLocal - 1].classList.remove('activeKey');
-					this.handleOnChose(event, propoList[indexLocal - 1].textContent);
-					indexLocal = 0;
-					break;
-				default:
-					indexLocal = 0;
-			}
-		}
-		this.setState({
-			index: indexLocal
-		});
-	};
-
 	handleClickOutside(event) {
 		const domNode = this.refs.propList;
 
@@ -168,24 +131,23 @@ export class SearchBar extends React.Component {
 	render() {
 		const { searchWord, propositionsList } = this.state;
 		return (
-			<section className="searchbar">
+			<div className="SearchBar">
 				<input
 					type="text"
-					className="searchbar__input"
+					className="SearchBar__Input"
 					value={searchWord}
 					onChange={this.handlSearchOnChange}
-					onKeyDown={this.handleOnKeyPress}
 					tabIndex="0"
 					placeholder="Type Country name in english"
 				/>
 				<ul
 					style={{ display: searchWord.length >= 3 ? 'block' : 'none' }}
-					className="searchbar__list"
+					className="SearchBar__List"
 					ref="propList"
 				>
 					{propositionsList}
 				</ul>
-			</section>
+			</div>
 		);
 	}
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Transition, Spring } from 'react-spring';
+import Section from '../components/Section/Section';
 import { CountryInfo } from '../components/Country/CountryInfo';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { SimpleMap } from '../components/Map/Map';
@@ -28,13 +29,13 @@ export class Destinations extends React.Component {
 								name: country.name,
 								flag: country.flag,
 								latlng: country.latlng,
-								capital: country.captial,
+								capital: country.capital,
 								region: country.region,
 								area: country.area,
 								subregion: country.subregion,
 								population: country.population,
 								currencies: country.currencies,
-								languages: country.currencies
+								languages: country.languages
 							}
 						]
 					};
@@ -125,7 +126,7 @@ export class Destinations extends React.Component {
 			: null;
 
 		return (
-			<div className="App">
+			<Section className="Destinations" title="Destinations">
 				{/* <input
 						type="text"
 						name="search"
@@ -144,8 +145,8 @@ export class Destinations extends React.Component {
 						<p>Loading ...</p>
 					)}
 					{chosenCountry && countryDataToDisplay ? (
-						<section className="countryinfo">
-							<div className="countryinfo__container">
+						<section className="CountryInfo">
+							<div className="CountryInfo_container">
 								<CountryInfo countryInfo={countryDataToDisplay} />
 								<div
 									style={{
@@ -196,7 +197,7 @@ export class Destinations extends React.Component {
 							})
 						}
 					</Transition> */}
-			</div>
+			</Section>
 		);
 	}
 }
