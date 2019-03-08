@@ -16,6 +16,7 @@
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "css-loader": "1.0.0",
@@ -44,6 +45,7 @@
     "axios": "0.18.0",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
+    "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "0.1.19",
     "countries-api": "^2.0.2",
     "extract-text-webpack-plugin": "3.0.2",
@@ -55,6 +57,7 @@
     "postcss-loader": "2.1.6",
     "react-router-dom": "4.3.1",
     "react-spring": "^8.0.11",
+    "react-toastify": "^4.5.2",
     "reactjs-popup": "1.2.0",
     "resolve-url-loader": "2.3.0"
   },

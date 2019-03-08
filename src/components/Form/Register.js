@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import Section from '../Section/Section';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 require('./Register.scss');
 
@@ -41,8 +42,12 @@ class Register extends Component {
 			.then(res => {
 				console.log('useradd: ' + res);
 				this.props.history.push('/');
+				toast.success('lala');
 			})
-			.catch(error => console.error(error));
+			.catch(error => {
+				console.error(error);
+				toast.error(error.request.response.replace(/"/g, ''));
+			});
 	}
 	render() {
 		return (

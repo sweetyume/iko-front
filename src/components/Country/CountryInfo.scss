@@ -1,5 +1,6 @@
 .CountryInfo {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/174608/photo-1513635269975-59663e0ac1ad.jpeg") no-repeat center center;
+    // background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/174608/photo-1513635269975-59663e0ac1ad.jpeg") no-repeat;
+    // background-size: cover;
     padding: 2rem 0 0;
     display: flex;
     flex-direction: column;
@@ -14,12 +15,17 @@
             font-weight: 700;
             letter-spacing: 2px;
             line-height: 1;
-            margin-bottom: 0;
-            margin-top: 0;
+            margin: 0 0 1rem;
             padding: 1.8rem 2rem;
             text-transform: uppercase;
             text-shadow: 1px 1px 0 rgba(#222b37, .25);
         }
+
+    }
+
+    &_Capital,
+    &_Subregion {
+        font-weight: bold;
     }
 
     &_Flag {

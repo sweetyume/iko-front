@@ -1,10 +1,28 @@
 .Card {
     justify-content: center;
     box-shadow: 0px 1px 5px #555;
+    height: 16.5rem;
 
     &_Image {
         display: grid;
         width: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &_Description {
+        text-align: left;
+        padding: 1rem;
+
+        &_Country {
+            font-size: 0.8rem;
+            text-transform: capitalize;
+
+        }
+
+        &_Title {
+            font-weight: bold;
+        }
     }
 
 }

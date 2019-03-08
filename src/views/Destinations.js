@@ -1,9 +1,10 @@
 import React from 'react';
-import { Transition, Spring } from 'react-spring';
 import Section from '../components/Section/Section';
 import { CountryInfo } from '../components/Country/CountryInfo';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { SimpleMap } from '../components/Map/Map';
+
+require('./Destinations.scss');
 
 export class Destinations extends React.Component {
 	state = {
@@ -88,7 +89,6 @@ export class Destinations extends React.Component {
 		const userInput = e.target.value;
 		if (userInput.length > 1) {
 			const countriesList = await this.getCountriesList(userInput);
-			// console.log("countriesList", countriesList);
 			const matchedCountries = countriesList.filter(country => {
 				return country.toLowerCase().includes(userInput.toLowerCase());
 			});
@@ -126,7 +126,8 @@ export class Destinations extends React.Component {
 			: null;
 
 		return (
-			<Section className="Destinations" title="Destinations">
+			<React.Fragment>
+				{/* <Section className="Destinations" title="Destinations"> */}
 				{/* <input
 						type="text"
 						name="search"
@@ -135,7 +136,7 @@ export class Destinations extends React.Component {
 						onFocus={this.renderSuggestions}
 						onBlur={this.hideSuggestions}
 					/> */}
-				<div className="content">
+				<div className="Destinations">
 					{countriesData ? (
 						<SearchBar
 							countriesData={countriesData}
@@ -172,32 +173,8 @@ export class Destinations extends React.Component {
 							</div>
 						)}
 					</div> */}
-				{/* <Transition
-						items={this.state.renderSuggestions}
-						from={{ opacity: 0, height: 0 }}
-						enter={{ opacity: 1, height: 100 }}
-						leave={{ opacity: 0, height: 0 }}
-					>
-						{show =>
-							show &&
-							(props => {
-								return this.state.matchedCountries.map((country, index) =>
-									index < 5 ? (
-										<Spring
-											to={{ opacity: 1, height: 100 }}
-											from={{ opacity: 0, height: 0 }}
-											delay={500}
-										>
-											{props => {
-												return <Country name={country.name} />;
-											}}
-										</Spring>
-									) : null
-								);
-							})
-						}
-					</Transition> */}
-			</Section>
+				{/* </Section> */}
+			</React.Fragment>
 		);
 	}
 }

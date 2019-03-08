@@ -10,6 +10,7 @@ body {
 	height: 100%;
 	overflow: auto;
 	text-align: center;
+	grid-template-rows: auto;
 	grid-template-areas:
 		'header '
 		'nav '
@@ -43,6 +44,7 @@ body {
 	grid-area: main;
 	text-align: center;
 }
+
 .Footer {
 	grid-area: footer;
 }

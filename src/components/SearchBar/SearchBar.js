@@ -138,7 +138,7 @@ export class SearchBar extends React.Component {
 					value={searchWord}
 					onChange={this.handlSearchOnChange}
 					tabIndex="0"
-					placeholder="Type Country name in english"
+					placeholder="Type country name in English"
 				/>
 				<ul
 					style={{ display: searchWord.length >= 3 ? 'block' : 'none' }}
