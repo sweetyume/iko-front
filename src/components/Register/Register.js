@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-require('../Login/Register.scss');
+require('./Register.scss');
 
 class Register extends Component {
 	constructor(props) {
@@ -22,7 +22,6 @@ class Register extends Component {
 	}
 
 	handleChange(event) {
-		console.log(event.target);
 		this.setState({
 			[event.target.name]: event.target.value
 		});
@@ -42,7 +41,7 @@ class Register extends Component {
 			.then(res => {
 				console.log('useradd: ' + res);
 				this.props.history.push('/');
-				toast.success('lala');
+				toast.success(`${user.username}, inscription réussie!`);
 			})
 			.catch(error => {
 				console.error(error);

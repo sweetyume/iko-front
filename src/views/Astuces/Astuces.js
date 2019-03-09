@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Section from '../components/Section/Section';
-import { DisplayArticle } from '../components/DisplayArticle/DisplayArticle';
+import Section from '../../components/Section/Section';
+import { DisplayArticle } from '../../components/DisplayArticle/DisplayArticle';
 
 class Astuces extends Component {
 	state = {

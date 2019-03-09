@@ -4,7 +4,6 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
-const env = process.env.NODE_ENV;
 
 module.exports = {
 	entry: ['@babel/polyfill', './src/index.js'],

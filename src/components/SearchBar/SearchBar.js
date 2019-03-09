@@ -51,7 +51,7 @@ export class SearchBar extends React.Component {
 						<li
 							key={country + id}
 							onClick={e => this.handleOnChose(e, country)}
-							className="searchbar__list__item"
+							className="SearchBar__List__Item"
 						>
 							{begining}
 							<span style={{ fontWeight: 'bold', fontFamily: 'inherit' }}>
@@ -62,7 +62,7 @@ export class SearchBar extends React.Component {
 					);
 				})
 			) : (
-				<li className="searchbar__list__item">This country doesn't exist.</li>
+				<li className="SearchBar__List__Item">Ce pays n'existe pas</li>
 			);
 
 		this.setState({
@@ -138,7 +138,7 @@ export class SearchBar extends React.Component {
 					value={searchWord}
 					onChange={this.handlSearchOnChange}
 					tabIndex="0"
-					placeholder="Type country name in English"
+					placeholder="Tapez le nom d'un pays en anglais"
 				/>
 				<ul
 					style={{ display: searchWord.length >= 3 ? 'block' : 'none' }}

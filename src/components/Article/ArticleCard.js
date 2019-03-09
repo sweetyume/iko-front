@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 require('../Card/Card.scss');
 
@@ -51,18 +51,18 @@ class ArticleCard extends Component {
 		return (
 			<div className="Card">
 				<img
-					className="Card_Image"
+					className="Card__Image"
 					src={
 						article && imgUrl
 							? imgUrl
 							: 'https://avataaars.io/?avatarStyle=Circle&topType=Turban&accessoriesType=Blank&hatColor=Red&facialHairType=MoustacheFancy&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=Gray02&graphicType=Deer&eyeType=Cry&eyebrowType=SadConcerned&mouthType=Tongue&skinColor=Pale'
 					}
 				/>
-				<div className="Card_Description">
-					<p className="Card_Description_Country">
+				<div className="Card__Description">
+					<p className="Card__Description__Country">
 						{article ? article.country : 'France'}
 					</p>
-					<p className="Card_Description_Title">
+					<p className="Card__Description__Title">
 						{article ? article.title : 'France'}
 					</p>
 				</div>

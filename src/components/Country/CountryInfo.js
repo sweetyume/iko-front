@@ -12,37 +12,39 @@ export class CountryInfo extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="CountryInfo">
-					<div className="CountryInfo_Location">
-						<h2 className="CountryInfo_Location_Name">{countryInfo[0].name}</h2>
+					<div className="CountryInfo__Location">
+						<h2 className="CountryInfo__Location__Name">
+							{countryInfo[0].name}
+						</h2>
 					</div>
-					<div className="CountryInfo_Capital">
+					<div className="CountryInfo__Capital">
 						<p>{countryInfo[0].capital}</p>
 					</div>
-					<div className="CountryInfo_Subregion">
+					<div className="CountryInfo__Subregion">
 						<p>{countryInfo[0].subregion}</p>
 					</div>
-					<div className="CountryInfo_Flag">
+					<div className="CountryInfo__Flag">
 						<img src={countryInfo[0].flag} />
 					</div>
 
-					<div className="CountryInfo_Infos">
-						<div className="CountryInfo_Infos_Details">
+					<div className="CountryInfo__Infos">
+						<div className="CountryInfo__Infos__Details">
 							<span>population</span>
 							<p>{countryInfo[0].population}</p>
 						</div>
-						<div className="CountryInfo_Infos_Details">
+						<div className="CountryInfo__Infos__Details">
 							<span>area</span>
 							<p>{countryInfo[0].area}</p>
 						</div>
-						<div className="CountryInfo_Infos_Details">
+						<div className="CountryInfo__Infos__Details">
 							<span>languages</span>
 							<p>{countryInfo[0].languages[0].name}</p>
 						</div>
-						<div className="CountryInfo_Infos_Details">
+						<div className="CountryInfo__Infos__Details">
 							<span>currencies</span>
-							<p className="CountryInfo_Infos_Details_Currency">
+							<p className="CountryInfo__Infos__Details__Currency">
 								{countryInfo[0].currencies[0].name}
-								<span className="CountryInfo_Infos_Details_Currency_Symbol">
+								<span className="CountryInfo__Infos__Details__Currency__Symbol">
 									{countryInfo[0].currencies[0].symbol}
 								</span>
 							</p>

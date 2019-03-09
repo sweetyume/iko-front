@@ -1,23 +1,53 @@
 .SearchBar {
-    input {
-        box-sizing: border-box;
-        margin: 0.5rem;
-        padding: 0.5rem;
-        border: 0.1rem solid #ccc;
-        border-radius: 0.2rem;
-        background-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
-        transition: background-color 0.5s ease;
-        min-width: 15rem;
+    width: 100%;
+    border-bottom: rgba(158, 158, 158, 0.5);
+    margin: 0 auto;
+    position: relative;
+
+    &__Input {
+        margin: 30px auto;
+        width: 350px;
+        height: 2.2em;
+        font-size: 1rem;
+        background-color: #fafafa;
+        padding: 0.2em 0.5em;
+        border: none;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2) inset;
+        }
     }
 
-    input:focus {
-        border: 0.2rem solid #14ccb9;
-    }
+    &__List {
+        list-style-type: none;
+        width: 350px;
+        margin: -30px auto;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        left: 0;
+        background: #fafafa;
+        z-index: 1;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-    input:hover {
-        box-shadow: 0px 1px 0px rgba(255, 255, 255, .25),
-            inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+        &__Item {
+            font-size: 1rem;
+            line-height: 2.2em;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: 400;
+            letter-spacing: 1px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #14CCB9;
+                color: rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        &__Item:last-child {
+            border-bottom: none;
+        }
     }
 
 }

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-require('./Register.scss');
+require('./Login.scss');
 
 class Login extends Component {
 	constructor(props) {
@@ -46,8 +46,8 @@ class Login extends Component {
 	};
 	render() {
 		return (
-			<Section className="Register" title="Connectez-vous">
-				<form className="Register__Form" onSubmit={this.handleSubmit}>
+			<Section className="Login" title="Connectez-vous">
+				<form className="Login__Form" onSubmit={this.handleSubmit}>
 					<input
 						type="email"
 						name="email"
@@ -63,8 +63,8 @@ class Login extends Component {
 						onChange={this.handleChange}
 					/>
 					<Button label="Se connecter" type="submit" />
-					<p className="Register__Form__Message">
-						Pas encore inscris? <Link to="/register">Inscrivez-vous</Link>
+					<p className="Login__Form__Message">
+						Pas encore inscrit? <Link to="/register">Inscrivez-vous</Link>
 					</p>
 				</form>
 			</Section>

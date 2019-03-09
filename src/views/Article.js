@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import Button from '../components/Button/Button';
 
 require('./Article.scss');
@@ -38,8 +39,14 @@ class Article extends Component {
 			formData.append('image', this.state.image);
 		axios
 			.post('/articles', formData)
-			.then(res => res.data)
-			.catch(error => error);
+			.then(res => {
+				res.data;
+				toast.success('Article bien ajouté');
+			})
+			.catch(error => {
+				error;
+				toast.error(error.request.response.replace(/"/g, ''));
+			});
 	}
 
 	render() {

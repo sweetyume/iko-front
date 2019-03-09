@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-
-import ArticleCard from '../components/Article/ArticleCard';
-import Card from '../components/Card/Card';
-import Article from './Article';
+import ArticleCard from '../../components/Article/ArticleCard';
+import Card from '../../components/Card/Card';
+import Article from '../Article';
 
 require('./Articles.scss');
 
