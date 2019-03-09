@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { UseProvider } from './contexts/UseContext';
 import App from './App';

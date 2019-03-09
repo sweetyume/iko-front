@@ -36,9 +36,9 @@ class Login extends Component {
 				password: this.state.password
 			});
 			console.log('Login: ', login.data);
-			// this.props.verifyCurrentUser();
+			await this.props.verifyCurrentUser();
 			this.props.history.push('/');
-			toast.success(`${login.data}`);
+			toast.success('Bienvenue');
 		} catch (error) {
 			console.error(error);
 			toast.error(error.request.response.replace(/"/g, ''));
