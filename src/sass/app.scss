@@ -1,9 +1,6 @@
 html,
 body {
 	box-sizing: border-box;
-	// height: 100vh;
-	// overflow: auto;
-	// margin: 0;
 	display: grid;
 	margin: 0;
 	font-family: 'Roboto';
@@ -18,18 +15,8 @@ body {
 		'footer';
 }
 
-.App {
-	// display: grid;
-	// margin: 0;
-	// font-family: 'Roboto';
-	// height: 100%;
-	// overflow: auto;
-	// text-align: center;
-	// grid-template-areas:
-	// 	'header '
-	// 	'nav '
-	// 	'main'
-	// 	'footer';
+#app {
+	height: 100vh;
 }
 
 .Header {

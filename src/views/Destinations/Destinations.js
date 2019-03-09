@@ -1,8 +1,7 @@
 import React from 'react';
-import Section from '../components/Section/Section';
-import { CountryInfo } from '../components/Country/CountryInfo';
-import SearchBar from '../components/SearchBar/SearchBar';
-import { SimpleMap } from '../components/Map/Map';
+import { CountryInfo } from '../../components/Country/CountryInfo';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import { SimpleMap } from '../../components/Map/Map';
 
 require('./Destinations.scss');
 
@@ -116,7 +115,12 @@ export class Destinations extends React.Component {
 	};
 
 	render() {
-		const { countriesData, chosenCountry, countryDataToDisplay } = this.state;
+		const {
+			countriesData,
+			chosenCountry,
+			countryDataToDisplay
+			// isAuth
+		} = this.state;
 		console.log(countryDataToDisplay);
 		const center = countryDataToDisplay
 			? {
@@ -136,6 +140,7 @@ export class Destinations extends React.Component {
 						onFocus={this.renderSuggestions}
 						onBlur={this.hideSuggestions}
 					/> */}
+				{/* {isAuth && ( */}
 				<div className="Destinations">
 					{countriesData ? (
 						<SearchBar
@@ -162,6 +167,8 @@ export class Destinations extends React.Component {
 						</section>
 					) : null}
 				</div>
+				{/* )} */}
+
 				{/* <div>
 						{this.state.renderSuggestions && (
 							<div>

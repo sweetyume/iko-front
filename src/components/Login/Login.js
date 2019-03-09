@@ -18,14 +18,17 @@ class Login extends Component {
 	}
 
 	handleChange = event => {
-		console.log(event.target);
 		this.setState({
 			[event.target.name]: event.target.value
 		});
 	};
 
-	handleSubmit = async event => {
+	handleSubmit = event => {
 		event.preventDefault();
+		this.login();
+	};
+
+	login = async () => {
 		let login = null;
 		try {
 			login = await axios.post('/login', {
@@ -33,6 +36,7 @@ class Login extends Component {
 				password: this.state.password
 			});
 			console.log('Login: ', login.data);
+			// this.props.verifyCurrentUser();
 			this.props.history.push('/');
 			toast.success(`${login.data}`);
 		} catch (error) {

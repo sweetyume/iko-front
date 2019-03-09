@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-import Section from '../components/Section/Section';
 import ArticleCard from '../components/Article/ArticleCard';
 import Card from '../components/Card/Card';
 import Article from './Article';
+
 require('./Articles.scss');
 
 class Articles extends Component {
@@ -51,7 +51,8 @@ class Articles extends Component {
 	render() {
 		const { articles } = this.state;
 		return (
-			<Section className="Articles" title="Articles">
+			<div className="Articles">
+				<h2>Destinations</h2>
 				<Article />
 				<div className="Articles_Container">
 					{this.state &&
@@ -68,7 +69,7 @@ class Articles extends Component {
 							/>
 						))}
 				</div>
-			</Section>
+			</div>
 		);
 	}
 }

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-require('./Register.scss');
+require('../Login/Register.scss');
 
 class Register extends Component {
 	constructor(props) {
