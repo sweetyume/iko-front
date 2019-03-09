@@ -5,6 +5,7 @@ import Section from '../Section/Section';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { globalPlug } from '../../contexts/UseContext';
 
 require('./Login.scss');
 
@@ -71,4 +72,4 @@ class Login extends Component {
 		);
 	}
 }
-export default withRouter(Login);
+export default globalPlug(Login);
