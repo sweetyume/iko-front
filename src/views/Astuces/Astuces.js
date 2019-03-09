@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Section from '../../components/Section/Section';
-import { DisplayArticle } from '../../components/DisplayArticle/DisplayArticle';
+import { globalPlug } from '../../contexts/UseContext';
 
 class Astuces extends Component {
 	state = {
 		articleToDisplay: '',
 		articles: []
 	};
-	componentDidMount() {}
 	render() {
-		const { isAuth } = this.state;
+		const { isAuth } = this.props;
 		return (
 			<Section className="Astuces" title="Conseils et Astuces">
 				{isAuth ? (
@@ -24,11 +24,11 @@ class Astuces extends Component {
 						officiis quisquam."
 					</p>
 				) : (
-					<p>vous devez être authentifié pour voir le contenu</p>
+					<p>Vous devez être authentifié pour voir le contenu</p>
 				)}
 			</Section>
 		);
 	}
 }
 
-export default Astuces;
+export default globalPlug(withRouter(Astuces));

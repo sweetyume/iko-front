@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
-import Section from '../Section/Section';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+
+import Button from '../Button/Button';
+import Section from '../Section/Section';
+import { globalPlug } from '../../contexts/UseContext';
 
 require('./Register.scss');
 
@@ -27,14 +28,18 @@ class Register extends Component {
 		});
 	}
 
-	handleSubmit(event) {
+	handleSubmit = event => {
 		event.preventDefault();
+		this.register();
+	};
+
+	register = () => {
 		const user = {
 			username: this.state.username,
 			login: this.state.email,
 			password: this.state.password
 		};
-		console.log({ user }, 'lala', this.state);
+		console.log({ user }, this.state);
 
 		axios
 			.post('/register', { user })
@@ -47,7 +52,7 @@ class Register extends Component {
 				console.error(error);
 				toast.error(error.request.response.replace(/"/g, ''));
 			});
-	}
+	};
 	render() {
 		return (
 			<Section className="Register" title="Inscrivez-vous">
@@ -82,4 +87,4 @@ class Register extends Component {
 		);
 	}
 }
-export default withRouter(Register);
+export default globalPlug(Register);

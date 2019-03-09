@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 import ArticleCard from '../../components/Article/ArticleCard';
 import Card from '../../components/Card/Card';
 import Article from '../Article';
+import { globalPlug } from '../../contexts/UseContext';
 
 require('./Articles.scss');
 
@@ -28,6 +29,7 @@ class Articles extends Component {
 		await axios
 			.get('/articles')
 			.then(response => {
+				this.props.verifyCurrentUser();
 				const articles = response.data;
 				const updatedArticles = articles.map(article => {
 					return {
@@ -38,7 +40,7 @@ class Articles extends Component {
 				// console.log( response );
 			})
 			.catch(error => {
-				// console.log(error);
+				console.log(error);
 				this.setState({ error: true });
 			});
 	}
@@ -49,10 +51,11 @@ class Articles extends Component {
 
 	render() {
 		const { articles } = this.state;
+		const { isAuth } = this.props;
 		return (
 			<div className="Articles">
 				<h2>Destinations</h2>
-				<Article />
+				{isAuth && <Article />}
 				<div className="Articles_Container">
 					{this.state &&
 						articles &&
@@ -73,4 +76,4 @@ class Articles extends Component {
 	}
 }
 
-export default withRouter(Articles);
+export default globalPlug(withRouter(Articles));

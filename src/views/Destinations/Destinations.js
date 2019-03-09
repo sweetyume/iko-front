@@ -15,8 +15,8 @@ export class Destinations extends React.Component {
 		countriesData: ''
 	};
 
-	componentDidMount() {
-		fetch(`https://restcountries.eu/rest/v2/all`)
+	async componentDidMount() {
+		await fetch(`https://restcountries.eu/rest/v2/all`)
 			.then(res => {
 				return res.json();
 			})

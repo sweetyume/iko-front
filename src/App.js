@@ -21,7 +21,7 @@ export default () => (
 			<Layout path="/login" component={Login} />
 			<Layout exact path="/destinations" component={Destinations} />
 			<Layout exact path="/astuces" component={Astuces} />
-			<Layout exact path="/programmes" component={Profiles} />
+			<Layout exact path="/programmes" component={Astuces} />
 			<Layout exact path="/articles" component={Articles} />
 			<ToastContainer
 				transition={Flip}

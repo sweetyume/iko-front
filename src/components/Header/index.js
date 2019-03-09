@@ -4,8 +4,9 @@ import { UseConsumer } from '../../contexts/UseContext';
 
 export default () => (
 	<UseConsumer>
-		{({ verifyCurrentUser }) => (
-			<Header verifyCurrentUser={verifyCurrentUser} />
-		)}
+		{value => {
+			const { isAuth, logout } = value;
+			return <Header isAuth={isAuth} logout={logout} />;
+		}}
 	</UseConsumer>
 );
