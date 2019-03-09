@@ -1,24 +1,31 @@
 .Profiles {
     text-align: center;
     padding: 2rem;
+
     &_Title {
         margin-bottom: 1rem;
     }
+
     &_Cards {
         &_Container {
-            display: flex;
+            display: grid;
             justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-gap: 1rem;
+
             &_Item {
                 margin: 0.5rem auto;
                 box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
                 transition: 0.3s;
                 border-radius: 0.5rem;
+
                 &_Content {
                     padding: 0.2rem 1.6rem;
                 }
             }
         }
     }
+
     &_Profiles_Cards:hover {
         box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
     }

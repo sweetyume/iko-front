@@ -1,22 +1,44 @@
 .Nav {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 1em;
+    align-items: center;
+    justify-content: center;
+    background: #FFD320;
+    padding: 1.5rem 0;
+
     &_List {
         padding: 0;
+        display: flex;
+        align-items: center;
+
         &_Item {
             display: inline;
             list-style-type: none;
             margin: 0;
+
             >a {
                 color: #FFF;
                 text-decoration: none;
-                font-weight: bold;
-                padding: 20px;
-                display: inline-block;
+                padding: 0 1rem 0.5rem;
+            }
+
+            >a:hover {
+                color: black;
             }
         }
     }
 }
 
 .active {
-    // background-color: #14CCB9FF;
     border-bottom: 0.5rem solid #14CCB9FF;
+}
+
+@media screen and (max-width: 600px) {
+    .Nav {
+        &_List {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }

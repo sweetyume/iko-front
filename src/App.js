@@ -1,16 +1,34 @@
-import React, { Component } from "react";
-import Header from "./components/Header/Header";
-import Main from "./routes/Main";
-require("./sass/app.scss");
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { ToastContainer, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Layout from './views/Layout';
+import Destinations from './views/Destinations/Destinations';
+import Astuces from './views/Astuces';
+import Articles from './views/Articles';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import Api from './views/Api';
+import Home from './views/Home';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <Main />
-      </div>
-    );
-  }
-}
-export default App;
+require('./sass/app.scss');
+
+export default () => (
+	<BrowserRouter>
+		<Switch>
+			<Layout exact path="/" component={Destinations} />
+			<Layout exact path="/register" component={Register} />
+			<Layout path="/login" component={Login} />
+			<Layout exact path="/destinations" component={Destinations} />
+			<Layout exact path="/astuces" component={Astuces} />
+			<Layout exact path="/programmes" component={Articles} />
+			<Layout exact path="/articles" component={Articles} />
+			<ToastContainer
+				transition={Flip}
+				position="top-center"
+				autoClose={5000}
+				hideProgressBar
+			/>
+		</Switch>
+	</BrowserRouter>
+);

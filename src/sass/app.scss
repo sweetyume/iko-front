@@ -1,21 +1,37 @@
+html,
 body {
-  background-color: #FFD320;
-  padding: 20px;
-  margin: 0;
+	box-sizing: border-box;
+	display: grid;
+	margin: 0;
+	font-family: 'Roboto';
+	height: 100%;
+	overflow: auto;
+	text-align: center;
+	grid-template-rows: auto;
+	grid-template-areas:
+		'header '
+		'nav '
+		'main'
+		'footer';
 }
 
-h1 {
-  font-family: 'Bonjour'
+#app {
+	height: 100vh;
 }
 
-h2,
-h3,
-p,
-ul,
-li {
-  font-family: sans-serif;
+.Header {
+	grid-area: header;
 }
 
-.content li {
-  margin-bottom: 10px;
+.Nav {
+	grid-area: nav;
+}
+
+.Main {
+	grid-area: main;
+	text-align: center;
+}
+
+.Footer {
+	grid-area: footer;
 }

@@ -6,8 +6,8 @@ import Section from "../components/Section/Section";
 require("./Profiles.scss");
 
 class Profiles extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { users: [] };
   }
   componentDidMount() {
@@ -21,20 +21,20 @@ class Profiles extends Component {
     return (
       <Section className="Profiles" title="Profiles">
         <div className="Profiles_Cards_Container">
-          {this.state.users.map(user => (
-            <div className="Profiles_Cards_Container_Item" key={user.user_id}>
-              <img
-                src="https://avataaars.io/?avatarStyle=Circle&topType=Turban&accessoriesType=Blank&hatColor=Red&facialHairType=MoustacheFancy&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=Gray02&graphicType=Deer&eyeType=Cry&eyebrowType=SadConcerned&mouthType=Tongue&skinColor=Pale"
-                alt=""
-              />
-              <div className="Profiles_Cards_Container_Item_Content">
-                <h3>
-                  {user.user_lastname} {user.user_firstname}
-                </h3>
-                <p>{user.user_email}</p>
+          {this.state &&
+            this.state.users &&
+            this.state.users.map(user => (
+              <div className="Profiles_Cards_Container_Item" key={user.id}>
+                <img
+                  src="https://avataaars.io/?avatarStyle=Circle&topType=Turban&accessoriesType=Blank&hatColor=Red&facialHairType=MoustacheFancy&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=Gray02&graphicType=Deer&eyeType=Cry&eyebrowType=SadConcerned&mouthType=Tongue&skinColor=Pale"
+                  alt=""
+                />
+                <div className="Profiles_Cards_Container_Item_Content">
+                  <h3>{user.username}</h3>
+                  <p>{user.email}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </Section>
     );
