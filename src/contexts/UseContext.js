@@ -28,6 +28,7 @@ export class UseProvider extends React.Component {
 	componentDidMount = async () => {
 		try {
 			await this.verifyCurrentUser();
+			this.getAllArticles();
 		} catch (error) {
 			console.log(error);
 		}
@@ -35,29 +36,48 @@ export class UseProvider extends React.Component {
 
 	verifyCurrentUser = async () => {
 		let authentication = null;
+
 		try {
 			authentication = await axios.get('/auth');
-			console.log('authentication', authentication);
 			this.setState({
 				isAuth: true,
 				currentUser: authentication.data.user
 			});
 		} catch (error) {
 			this.setState({ currentUser: error.response.data.user });
-			throw new Error('Utilisateur non authentifié');
+			throw new Error(`Utilisateur non authentifié`);
+		}
+	};
+
+	logout = async () => {
+		try {
+			await axios.get('/logout');
+			toast.info(`A bientôt ${this.state.currentUser.username} !`);
+			this.setState({ isAuth: false, currentUser: null });
+		} catch (error) {
+			console.error(error);
+			toast.error('Error logout !');
+		}
+	};
+
+	getAllArticles = async () => {
+		let allArticles = null;
+		try {
+			allArticles = await axios.get('/articles');
+			this.setState({ articles: allArticles.data });
+		} catch (error) {
+			console.error(error);
 		}
 	};
 
 	action = {
-		verifyCurrentUser: this.verifyCurrentUser
+		verifyCurrentUser: this.verifyCurrentUser,
+		logout: this.logout,
+		getAllArticles: this.allArticles
 	};
 
 	render() {
 		return (
-			/**
-			 * la propriété value est très importante ici, elle rend
-			 * le contenu du state disponible aux `Consumers` de l'application
-			 */
 			<UseContext.Provider value={{ ...this.state, ...this.action }}>
 				{this.props.children}
 			</UseContext.Provider>
@@ -65,5 +85,9 @@ export class UseProvider extends React.Component {
 	}
 }
 
+/**
+ * la propriété value est très importante ici, elle rend
+ * le contenu du state disponible aux `Consumers` de l'application
+ */
 export const UseConsumer = UseContext.Consumer;
 export default UseProvider;

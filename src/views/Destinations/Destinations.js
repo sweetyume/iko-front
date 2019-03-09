@@ -115,12 +115,7 @@ export class Destinations extends React.Component {
 	};
 
 	render() {
-		const {
-			countriesData,
-			chosenCountry,
-			countryDataToDisplay
-			// isAuth
-		} = this.state;
+		const { countriesData, chosenCountry, countryDataToDisplay } = this.state;
 		console.log(countryDataToDisplay);
 		const center = countryDataToDisplay
 			? {
@@ -131,16 +126,6 @@ export class Destinations extends React.Component {
 
 		return (
 			<React.Fragment>
-				{/* <Section className="Destinations" title="Destinations"> */}
-				{/* <input
-						type="text"
-						name="search"
-						autoComplete="off"
-						onChange={this.onChange}
-						onFocus={this.renderSuggestions}
-						onBlur={this.hideSuggestions}
-					/> */}
-				{/* {isAuth && ( */}
 				<div className="Destinations">
 					{countriesData ? (
 						<SearchBar
@@ -167,9 +152,26 @@ export class Destinations extends React.Component {
 						</section>
 					) : null}
 				</div>
-				{/* )} */}
+			</React.Fragment>
+		);
+	}
+}
 
-				{/* <div>
+export default Destinations;
+
+{
+	/* <input
+						type="text"
+						name="search"
+						autoComplete="off"
+						onChange={this.onChange}
+						onFocus={this.renderSuggestions}
+						onBlur={this.hideSuggestions}
+					/> */
+}
+
+{
+	/* <div>
 						{this.state.renderSuggestions && (
 							<div>
 								{this.state.matchedCountries.map((country, index) => (
@@ -179,11 +181,8 @@ export class Destinations extends React.Component {
 								))}
 							</div>
 						)}
-					</div> */}
-				{/* </Section> */}
-			</React.Fragment>
-		);
-	}
+					</div> */
 }
-
-export default Destinations;
+{
+	/* </Section> */
+}

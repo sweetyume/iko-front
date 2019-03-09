@@ -36,7 +36,7 @@ class Login extends Component {
 				password: this.state.password
 			});
 			console.log('Login: ', login.data);
-			// this.props.verifyCurrentUser();
+			this.props.verifyCurrentUser();
 			this.props.history.push('/');
 			toast.success(`${login.data}`);
 		} catch (error) {
