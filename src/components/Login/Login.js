@@ -5,6 +5,7 @@ import Section from '../Section/Section';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { globalPlug } from '../../contexts/UseContext';
 
 require('./Login.scss');
 
@@ -36,7 +37,7 @@ class Login extends Component {
 				password: this.state.password
 			});
 			console.log('Login: ', login.data);
-			this.props.verifyCurrentUser();
+			await this.props.verifyCurrentUser();
 			this.props.history.push('/');
 			toast.success(`${login.data}`);
 		} catch (error) {
@@ -71,4 +72,4 @@ class Login extends Component {
 		);
 	}
 }
-export default withRouter(Login);
+export default globalPlug(Login);

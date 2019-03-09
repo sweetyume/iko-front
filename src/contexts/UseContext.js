@@ -85,9 +85,11 @@ export class UseProvider extends React.Component {
 	}
 }
 
-/**
- * la propriété value est très importante ici, elle rend
- * le contenu du state disponible aux `Consumers` de l'application
- */
-export const UseConsumer = UseContext.Consumer;
+// HOC pour passer les props globaux, props définis dans this.action et thisstate au dessus
+export const globalPlug = (Component) => (props) => {
+	return <UseContext.Consumer>{(context) =>
+		<Component {...context}{...props} />
+	}</UseContext.Consumer>
+}
+
 export default UseProvider;
