@@ -21,9 +21,9 @@ class Profil extends Component {
 	}
 	getProfil = async () => {
 		await axios
-			.get(`/users/${this.props.userId}`)
+			.get(`/users/${this.props.currentUser.id}`)
 			.then(res => {
-				res.data, console.log(res.data);
+				return res.data
 			})
 			.then(user => this.setState({ user }))
 			.catch(error => error);
