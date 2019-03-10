@@ -79,9 +79,9 @@ class Profil extends Component {
 
 					<div className="Profil__Description">
 						<p className="Profil__Description__Name">
-							username: {user.username}
+							username: {user ? user.username : ''}
 						</p>
-						<p className="Profil__Description__Email">email: {user.login}</p>
+						<p className="Profil__Description__Email">email: {user ? user.login : ''}</p>
 						{/* <p className="Profil__Description__Password">
 							password: {user && user.password}
 						</p> */}
