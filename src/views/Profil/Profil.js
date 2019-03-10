@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { globalPlug } from '../../contexts/UseContext';
 
 import Section from '../../components/Section/Section';
@@ -12,6 +11,7 @@ require('./Profil.scss');
 class Profil extends Component {
 	constructor(props) {
 		super(props);
+		console.log(props);
 		this.state = {
 			user: null,
 			user_emailField: '',
@@ -27,6 +27,38 @@ class Profil extends Component {
 			})
 			.then(user => this.setState({ user }))
 			.catch(error => error);
+	};
+	// editProfil >  show modal to edit  user settings
+	editUserProfil = () => {
+		const user_id = this.props.currentUser && this.props.currentUser.id;
+		const editUser = {
+			user_email: this.state.user_emailField
+				? this.state.user_emailField
+				: this.state.user.login,
+			user_username: this.state.user_usernameField
+				? this.state.user_usernameField
+				: this.state.user.username,
+			user_password: this.state.user_passwordField
+				? this.state.user_passwordField
+				: this.state.user.password
+		};
+
+		axios
+			.post(`/users/edit/${this.props.userId}`, {
+				user: editUser,
+				user_id
+			})
+			.then(res => {
+				this.props.verifyCurrentUser();
+				this.setState({
+					user: res.data
+				});
+				toast.success('Changement enregistré avec succès');
+			})
+			.catch(error => {
+				console.error(error);
+				toast.error('Erreur lors du changement');
+			});
 	};
 
 	componentDidMount() {
@@ -47,11 +79,9 @@ class Profil extends Component {
 
 					<div className="Profil__Description">
 						<p className="Profil__Description__Name">
-							username: {user && user.username}
+							username: {user.username}
 						</p>
-						<p className="Profil__Description__Email">
-							email: {user && user.login}
-						</p>
+						<p className="Profil__Description__Email">email: {user.login}</p>
 						{/* <p className="Profil__Description__Password">
 							password: {user && user.password}
 						</p> */}
