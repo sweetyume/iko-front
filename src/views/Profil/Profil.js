@@ -93,4 +93,4 @@ class Profil extends Component {
 	}
 }
 
-export default globalPlug(withRouter(Profil));
+export default globalPlug(Profil);
