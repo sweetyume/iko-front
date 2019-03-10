@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import Section from '../../components/Section/Section';
 import ArticleCard from '../../components/Article/ArticleCard';
 import Card from '../../components/Card/Card';
 import Article from '../Article';
@@ -53,25 +54,31 @@ class Articles extends Component {
 		const { articles } = this.state;
 		const { isAuth } = this.props;
 		return (
-			<div className="Articles">
-				<h2>Destinations</h2>
-				{isAuth && <Article />}
-				<div className="Articles_Container">
-					{this.state &&
-						articles &&
-						articles.map((article, index) => (
-							<ArticleCard
-								className-="Articles_Container_Card"
-								articleId={article.id}
-								key={index}
-								title={article.title}
-								country={article.country}
-								imgUrl={article.imgUrl}
-								clicked={() => this.articleSelected(article.id)}
-							/>
-						))}
-				</div>
-			</div>
+			<React.Fragment>
+				{isAuth ? (
+					<div className="Articles">
+						<h2>Destinations</h2>
+						<Article />
+						<div className="Articles_Container">
+							{this.state &&
+								articles &&
+								articles.map((article, index) => (
+									<ArticleCard
+										className-="Articles_Container_Card"
+										articleId={article.id}
+										key={index}
+										title={article.title}
+										country={article.country}
+										imgUrl={article.imgUrl}
+										clicked={() => this.articleSelected(article.id)}
+									/>
+								))}
+						</div>
+					</div>
+				) : (
+					<Section title="Destinations" />
+				)}
+			</React.Fragment>
 		);
 	}
 }

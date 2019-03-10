@@ -21,7 +21,7 @@ class Header extends React.Component {
 				</Link>
 				{isAuth ? (
 					<div className="Header__Right">
-						<Link className="Header__Right__Button" to="/astuces">
+						<Link className="Header__Right__Button" to="/profil">
 							<Button label="Profil" />
 						</Link>
 						<Link className="Header__Right__Button" to="/">

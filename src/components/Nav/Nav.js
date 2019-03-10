@@ -17,6 +17,9 @@ const Nav = () => {
 					<NavLink to="/articles">Articles</NavLink>
 				</li>
 				<li className="Nav__List__Item">
+					<NavLink to="/profiles">Users</NavLink>
+				</li>
+				<li className="Nav__List__Item">
 					<NavLink to="/astuces">Conseils et Astuces</NavLink>
 				</li>
 			</ul>

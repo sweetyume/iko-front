@@ -9,6 +9,7 @@ import Astuces from './views/Astuces/Astuces';
 import Articles from './views/Articles/Articles';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import Profil from './views/Profil/Profil';
 import Profiles from './views/Profil/Profiles';
 
 require('./sass/app.scss');
@@ -20,9 +21,11 @@ export default () => (
 			<Layout exact path="/register" component={Register} />
 			<Layout path="/login" component={Login} />
 			<Layout exact path="/destinations" component={Destinations} />
+			<Layout exact path="/profiles" component={Profiles} />
 			<Layout exact path="/astuces" component={Astuces} />
 			<Layout exact path="/programmes" component={Astuces} />
 			<Layout exact path="/articles" component={Articles} />
+			<Layout exact path="/profil" component={Profil} />
 			<ToastContainer
 				transition={Flip}
 				position="top-center"
