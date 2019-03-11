@@ -95,7 +95,7 @@ export class SearchBar extends React.Component {
 		}
 	}
 
-	handleOnMouseEnter(event) {
+	handleOnMouseEnter = event => {
 		const domNode = this.refs.propList.children;
 		for (let i = 0; i < domNode.length; i++) {
 			if (domNode[i].classList.contains('activeKey')) {
@@ -105,7 +105,7 @@ export class SearchBar extends React.Component {
 		this.setState({
 			index: 0
 		});
-	}
+	};
 
 	componentDidMount() {
 		document.addEventListener(

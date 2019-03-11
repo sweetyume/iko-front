@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import Section from '../Section/Section';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { globalPlug } from '../../contexts/UseContext';

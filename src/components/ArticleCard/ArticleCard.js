@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { globalPlug } from '../../contexts/UseContext';
 
 require('../Card/Card.scss');
 
@@ -9,20 +9,19 @@ class ArticleCard extends Component {
 		super();
 		this.state = { article: null, imgUrl: '' };
 	}
-	// componentDidMount() {
-	// 	axios
-	// 		.get(`/articles/${this.props.articleId}`)
-	// 		.then(res => res.data)
-	// 		.then(article => {
-	// 			//transform buffer to 8bits unsign
-	// 			const arrayBufferView = new Uint8Array(article.file.data);
-	// 			const imgBlob = new Blob([arrayBufferView], { type: 'image/jpeg' });
-	// 			const imgUrl = URL.createObjectURL(imgBlob);
-	// 			this.setState({ article, imgUrl });
-	// 		})
-	// 		.catch(error => error);
-	// }
-	getArticleDetails() {
+
+	componentDidMount = () => {
+		this.getArticlesDetails();
+	};
+
+	componentDidUpdate(prevProps) {
+		console.log('=componentDidUpdate=', this.props.articleId);
+		if (prevProps.articleId !== this.props.articleId) {
+			this.getArticlesDetails();
+		}
+	}
+
+	getArticlesDetails = () => {
 		axios
 			.get(`/articles/${this.props.articleId}`)
 			.then(res => res.data)
@@ -34,22 +33,12 @@ class ArticleCard extends Component {
 				this.setState({ article, imgUrl });
 			})
 			.catch(error => error);
-	}
-	componentDidMount() {
-		this.getArticleDetails();
-	}
-
-	componentDidUpdate(prevProps) {
-		console.log('=componentDidUpdate=', this.props.articleId);
-		if (prevProps.articleId !== this.props.articleId) {
-			this.getArticleDetails();
-		}
-	}
+	};
 
 	render() {
 		const { article, imgUrl } = this.state;
 		return (
-			<div className="Card">
+			<div className="Card" onClick={this.props.onClick}>
 				<img
 					className="Card__Image"
 					src={
@@ -70,4 +59,4 @@ class ArticleCard extends Component {
 		);
 	}
 }
-export default withRouter(ArticleCard);
+export default globalPlug(ArticleCard);

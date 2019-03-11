@@ -1,0 +1,25 @@
+.FullArticle {
+    margin: 1.5rem auto;
+
+    &__Header {
+        &__Country {
+            margin: 1.5rem auto;
+        }
+    }
+
+    &__Content {
+        &__Image {
+            margin: 2rem;
+            border-radius: 0;
+        }
+
+        &__Description {
+            margin: 2rem;
+            text-align: justify;
+        }
+
+        &__Infos {
+            color: #999;
+        }
+    }
+}
