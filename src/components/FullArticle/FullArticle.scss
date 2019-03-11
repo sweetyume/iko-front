@@ -20,6 +20,10 @@
 
         &__Infos {
             color: #999;
+
+            span {
+                text-transform: capitalize;
+            }
         }
     }
 }

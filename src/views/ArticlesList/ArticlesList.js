@@ -10,17 +10,12 @@ class ArticlesList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			articles: [],
-			selectedArticleId: null
+			articles: []
 		};
 	}
 
 	componentDidMount = async () => {
 		await this.props.getAllArticles();
-	};
-
-	articleSelectedHandler = id => {
-		this.setState({ selectedArticleId: id });
 	};
 
 	displayFullArticle = id => {
@@ -48,11 +43,6 @@ class ArticlesList extends Component {
 				<div className="Articles">
 					<h2>Destinations</h2>
 					<div className="Articles__Container">{allArticles}</div>
-					{/* <Route
-						path={this.props.match.url + '/:id'}
-						exact
-						component={FullArticle}
-					/> */}
 				</div>
 			</React.Fragment>
 		);

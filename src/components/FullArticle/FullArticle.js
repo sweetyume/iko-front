@@ -17,10 +17,11 @@ class FullArticle extends React.Component {
 			imgUrl: ''
 		};
 	}
-	componentDidMount() {
+	componentDidMount = async () => {
 		console.log(this.props);
+		await this.props.verifyCurrentUser();
 		this.loadData();
-	}
+	};
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.articleId !== this.props.articleId) {
@@ -71,6 +72,9 @@ class FullArticle extends React.Component {
 
 	render() {
 		const { loadedArticle, imgUrl } = this.state;
+		const { currentUser } = this.props;
+		const userId = currentUser && currentUser.userId;
+		console.log({ userId });
 		let date = '';
 		let heure = '';
 		let image = '';
@@ -83,6 +87,8 @@ class FullArticle extends React.Component {
 				.format('LT');
 
 			image = this.state.imgUrl;
+			author = this.state.loadedArticle.userId;
+			console.log('article', this.state.loadedArticle);
 		}
 		return (
 			<div className="FullArticle">
@@ -102,7 +108,7 @@ class FullArticle extends React.Component {
 						<p>
 							le {date}, {heure}
 						</p>
-						<span>{author}</span>
+						<span>par {author}</span>
 					</div>
 					<div className="FullArticle__Content__Description">
 						{loadedArticle
@@ -115,21 +121,3 @@ class FullArticle extends React.Component {
 	}
 }
 export default globalPlug(withRouter(FullArticle));
-
-// const FullArticle = ({ title, country, imgUrl, description }) => {
-// 	return (
-// 		<div className="FullArticle">
-// 			<div className="FullArticle__Header">
-// 				<h2 className="FullArticle__Header__Title">{title}</h2>
-// 				<h3 className="FullArticle__Header__Country">{country}</h3>
-// 			</div>
-
-// 			<div className="FullArticle__Content">
-// 				<img className="FullArticle__Content__Image" src={imgUrl} />
-// 				<div className="FullArticle__Content__Description">
-// 					{description}
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
