@@ -13,4 +13,12 @@
     &__Description {
         margin-top: 1.5rem;
     }
+
+    &__Settings {
+        display: flex;
+
+        &__Button {
+            margin: 1rem;
+        }
+    }
 }

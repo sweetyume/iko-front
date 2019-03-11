@@ -23,7 +23,8 @@ export class UseProvider extends React.Component {
 	state = {
 		isAuth: false,
 		currentUser: null,
-		articles: []
+		articles: [],
+		article: ''
 	};
 
 	componentDidMount = async () => {
@@ -74,7 +75,7 @@ export class UseProvider extends React.Component {
 	action = {
 		verifyCurrentUser: this.verifyCurrentUser,
 		logout: this.logout,
-		getAllArticles: this.allArticles
+		getAllArticles: this.getAllArticles
 	};
 
 	render() {
