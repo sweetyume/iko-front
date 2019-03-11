@@ -48,6 +48,7 @@ class Login extends Component {
 		return (
 			<Section className="Login" title="Connectez-vous">
 				<form className="Login__Form" onSubmit={this.handleSubmit}>
+					<label for="email">Email</label>
 					<input
 						type="email"
 						name="email"
@@ -55,6 +56,7 @@ class Login extends Component {
 						placeholder="Adresse e-mail"
 						onChange={this.handleChange}
 					/>
+					<label for="password">Mot de passe</label>
 					<input
 						type="password"
 						name="password"

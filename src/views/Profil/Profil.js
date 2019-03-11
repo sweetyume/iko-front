@@ -125,7 +125,7 @@ class Profil extends Component {
 						<div>
 							A vos plumes!
 							<br />
-							Contribuez à la plateforme en partageant vos expériences de
+							Contribuer à la plateforme en partageant votre expérience de
 							voyage, donner des conseils...
 						</div>
 						<Link to="/article">
@@ -143,19 +143,23 @@ class Profil extends Component {
 							contentLabel="Modifier son profil"
 						>
 							<h2>Informations</h2>
+							<p>Editer vos informations</p>
 							<form className="Login__Form" onSubmit={this.handleSubmit}>
+								<label for="username">Nom</label>
 								<input
 									defaultValue={user ? user.username : ''}
 									type="text"
 									name="modifiedUsername"
 									onChange={this.handleChange}
 								/>
+								<label for="email">Email</label>
 								<input
 									defaultValue={user ? user.login : ''}
 									type="email"
 									name="modifiedEmail"
 									onChange={this.handleChange}
 								/>
+								<label for="password">Mot de passe</label>
 								<input
 									type="password"
 									name="modifiedPassword"

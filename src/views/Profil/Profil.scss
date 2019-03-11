@@ -42,6 +42,33 @@
     }
 
     &__Modal {
+        label {
+            text-align: left;
+            margin-left: 0.5rem;
+            font-weight: normal;
+            color: #14CCB9;
+        }
+
+        input {
+            box-sizing: border-box;
+            margin: 0 0.5rem 0.8rem;
+            padding: 0.5rem;
+            border: 0.1rem solid #ccc;
+            border-radius: 0.2rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+            transition: background-color 0.5s ease;
+        }
+
+        input:focus {
+            border: 0.2rem solid #14ccb9;
+        }
+
+        input:hover {
+            box-shadow: 0 0.1rem 0 rgba(255, 255, 255, .25),
+                inset 0 0.3rem 0.6rem rgba(0, 0, 0, 0.25);
+        }
+
         &__BtnContainer {
             button {
                 margin: 0.5rem;

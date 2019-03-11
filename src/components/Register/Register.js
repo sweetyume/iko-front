@@ -57,6 +57,7 @@ class Register extends Component {
 		return (
 			<Section className="Register" title="Inscrivez-vous">
 				<form className="Register__Form" onSubmit={this.handleSubmit}>
+					<label for="username">Nom</label>
 					<input
 						type="text"
 						name="username"
@@ -64,6 +65,7 @@ class Register extends Component {
 						placeholder="nom"
 						onChange={this.handleChange}
 					/>
+					<label for="email">Email</label>
 					<input
 						type="email"
 						name="email"
@@ -71,6 +73,7 @@ class Register extends Component {
 						placeholder="Adresse e-mail"
 						onChange={this.handleChange}
 					/>
+					<label for="password">Mot de passe</label>
 					<input
 						type="password"
 						name="password"

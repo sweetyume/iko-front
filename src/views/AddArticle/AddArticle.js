@@ -54,22 +54,25 @@ class AddArticle extends Component {
 		return (
 			<Section className="Article" title="Ecrire un article">
 				<form className="Article">
+					<label for="country">Pays</label>
 					<input
 						type="text"
 						name="country"
-						placeholder="country"
+						placeholder="nom du pays ou de la région"
 						value={this.state.value}
 						onChange={this.onChange}
 					/>
+					<label for="title">Titre</label>
 					<input
 						type="text"
 						name="title"
-						placeholder="title"
+						placeholder="titre de l'article"
 						value={this.state.value}
 						onChange={this.onChange}
 					/>
+					<label for="description">Description</label>
 					<textarea
-						placeholder="Description"
+						placeholder="Partagez votre expérience"
 						id="description"
 						name="description"
 						value={this.state.value}
@@ -77,8 +80,8 @@ class AddArticle extends Component {
 						rows="5"
 						cols="33"
 					/>
+					<label for="image">Choisir une image</label>
 					<input type="file" name="image" onChange={this.onChangeFile} />
-
 					<Button
 						className="Article_Button"
 						label="Ajouter"

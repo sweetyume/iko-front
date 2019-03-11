@@ -1,8 +1,46 @@
 .Footer {
     background: #FFD320;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
 
-    >p {
+    p {
         margin: 0;
 
+    }
+
+    &__List {
+        margin: 1rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        &__Item {
+            display: inline;
+            list-style-type: none;
+            margin: 0;
+
+            a {
+                color: #FFF;
+                text-decoration: none;
+                padding: 0 1rem 0.5rem;
+            }
+
+            a:hover {
+                color: black;
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    .Nav {
+        &__List {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
