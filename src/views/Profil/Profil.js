@@ -72,9 +72,8 @@ class Profil extends Component {
 				return res.data;
 			})
 			.then(res => {
-				this.state.user = res
 				this.setState({
-					user: res.data,
+					user: res,
 					showModal: false
 				});
 				toast.success('Informations modifées');
