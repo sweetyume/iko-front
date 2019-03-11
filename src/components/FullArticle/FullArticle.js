@@ -1,12 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 import { globalPlug } from '../../contexts/UseContext';
 
-import Section from '../Section/Section';
-
 require('./FullArticle.scss');
 
+const poster = require('../../assets/images/places-background.jpeg');
 class FullArticle extends React.Component {
 	constructor() {
 		super();
@@ -25,6 +27,20 @@ class FullArticle extends React.Component {
 			this.loadData();
 		}
 	}
+	// loadData() {
+	// 	if (this.props.match.params.id) {
+	// 		if (
+	// 			!this.state.loadedArticle ||
+	// 			(this.state.loadedArticle &&
+	// 				this.state.loadedArticle.id !== +this.props.match.params.id)
+	// 		) {
+	// 			axios.get('/articles/' + this.props.match.params.id).then(response => {
+	// 				// console.log(response);
+	// 				this.setState({ loadedArticle: response.data });
+	// 			});
+	// 		}
+	// 	}
+	// }
 
 	loadData() {
 		if (this.props.match.params.id) {
@@ -35,77 +51,82 @@ class FullArticle extends React.Component {
 			) {
 				axios
 					.get('/articles/' + this.props.match.params.id)
-					.then(response => {
-						return response.data;
-					})
 					.then(loadedArticle => {
-						//transform buffer to 8bits unsign
-						const arrayBufferView = new Uint8Array(loadedArticle.file.data);
-						const imgBlob = new Blob([arrayBufferView], { type: 'image/jpeg' });
+						const arrayBufferView = new Uint8Array(
+							loadedArticle.data.file.data
+						);
+						const imgBlob = new Blob([arrayBufferView], {
+							type: 'image/jpeg'
+						});
 						const imgUrl = URL.createObjectURL(imgBlob);
-						this.setState({ loadedArticle: loadedArticle.data, imgUrl });
+						this.setState({
+							loadedArticle: loadedArticle.data,
+							imgUrl: imgUrl
+						});
 					})
 					.catch(error => error);
 			}
 		}
 	}
-	// loadData() {
-	// 	if (this.props.match.params.id) {
-	// 		if (
-	// 			!this.state.loadedArticle ||
-	// 			(this.state.loadedArticle &&
-	// 				this.state.loadedArticle.id !== +this.props.match.params.id)
-	// 		) {
-	// 			axios.get('/articles/' + this.props.match.params.id)
-	// 			.then(response => {return response.data})
-	// 			.then(response => {
-	// 				// console.log(response);
-	// 				this.setState({ loadedArticle: response.data });
-	// 			});
-	// 		}
-	// 	}
-	// }
 
 	render() {
-		const { loadedArticle } = this.state;
-		return (
-			<Section title={loadedArticle ? loadedArticle.title : ''}>
-				<div className="DisplayArticle">
-					<div className="DisplayArticle__Header">
-						<h3 className="DisplayArticle__Header__Country">
-							{loadedArticle ? loadedArticle.country : ''}
-						</h3>
-					</div>
+		const { loadedArticle, imgUrl } = this.state;
+		let date = '';
+		let heure = '';
+		let image = '';
+		let author = '';
+		if (this.state.loadedArticle) {
+			date = moment.utc(this.state.loadedArticle.created_at).format('ll');
+			heure = moment
+				.utc(this.state.loadedArticle.created_at)
+				.utcOffset('+0200')
+				.format('LT');
 
-					<div className="DisplayArticle__Content">
-						<img
-							className="DisplayArticle__Content__Image"
-							src={loadedArticle ? loadedArticle.imgUrl : ''}
-						/>
-						<div className="DisplayArticle__Content__Description">
-							{loadedArticle
-								? loadedArticle.description
-								: loadedArticle.description}
-						</div>
+			image = this.state.imgUrl;
+		}
+		return (
+			<div className="FullArticle">
+				<h2>{loadedArticle ? loadedArticle.title : ''}</h2>
+				<div className="FullArticle__Header">
+					<h3 className="FullArticle__Header__Country">
+						{loadedArticle ? loadedArticle.country : ''}
+					</h3>
+				</div>
+
+				<div className="FullArticle__Content">
+					<img
+						className="FullArticle__Content__Image"
+						src={imgUrl ? image : poster}
+					/>
+					<div className="FullArticle__Content__Infos">
+						<p>
+							le {date}, {heure}
+						</p>
+						<span>{author}</span>
+					</div>
+					<div className="FullArticle__Content__Description">
+						{loadedArticle
+							? loadedArticle.description
+							: loadedArticle.description}
 					</div>
 				</div>
-			</Section>
+			</div>
 		);
 	}
 }
-export default globalPlug(FullArticle);
+export default globalPlug(withRouter(FullArticle));
 
-// const DisplayArticle = ({ title, country, imgUrl, description }) => {
+// const FullArticle = ({ title, country, imgUrl, description }) => {
 // 	return (
-// 		<div className="DisplayArticle">
-// 			<div className="DisplayArticle__Header">
-// 				<h2 className="DisplayArticle__Header__Title">{title}</h2>
-// 				<h3 className="DisplayArticle__Header__Country">{country}</h3>
+// 		<div className="FullArticle">
+// 			<div className="FullArticle__Header">
+// 				<h2 className="FullArticle__Header__Title">{title}</h2>
+// 				<h3 className="FullArticle__Header__Country">{country}</h3>
 // 			</div>
 
-// 			<div className="DisplayArticle__Content">
-// 				<img className="DisplayArticle__Content__Image" src={imgUrl} />
-// 				<div className="DisplayArticle__Content__Description">
+// 			<div className="FullArticle__Content">
+// 				<img className="FullArticle__Content__Image" src={imgUrl} />
+// 				<div className="FullArticle__Content__Description">
 // 					{description}
 // 				</div>
 // 			</div>

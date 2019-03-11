@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { globalPlug } from '../../contexts/UseContext';
-import { withRouter } from 'react-router-dom';
 
 require('../Card/Card.scss');
 

@@ -150,6 +150,9 @@ class Profil extends Component {
 							</div>
 						</Modal>
 					</div>
+					<div className="Profil__Articles">
+						<p>Mes articles</p>
+					</div>
 				</div>
 			</Section>
 		);

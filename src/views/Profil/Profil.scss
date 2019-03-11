@@ -16,9 +16,8 @@
 
     &__Settings {
         display: flex;
+        justify-content: center;
 
-        &__Button {
-            margin: 1rem;
-        }
     }
+
 }

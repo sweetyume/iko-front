@@ -24,7 +24,7 @@ export default () => (
 			<Layout exact path="/register" component={Register} />
 			<Layout path="/login" component={Login} />
 			<Layout exact path="/destinations" component={Destinations} />
-			<Layout exact path="/profiles" component={Profiles} />
+			{/* <Layout exact path="/profiles" component={Profiles} /> */}
 			<Layout exact path="/astuces" component={Astuces} />
 			<Layout exact path="/programmes" component={ArticlesList} />
 			<Layout exact path="/profil" component={Profil} />
