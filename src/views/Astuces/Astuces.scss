@@ -1,0 +1,19 @@
+.Astuces {
+    height: 100%;
+
+    h2 {
+        margin: 1.5rem auto;
+    }
+
+    &__Container {
+        display: grid;
+        padding: 1rem 4rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 1rem;
+    }
+}
+
+img {
+    border-radius: 0;
+    height: 10rem;
+}
