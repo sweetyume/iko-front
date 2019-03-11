@@ -137,7 +137,7 @@ export class Destinations extends React.Component {
 					)}
 					{chosenCountry && countryDataToDisplay ? (
 						<section className="CountryInfo">
-							<div className="CountryInfo_container">
+							<div className="CountryInfo__Container">
 								<CountryInfo countryInfo={countryDataToDisplay} />
 								<div
 									style={{

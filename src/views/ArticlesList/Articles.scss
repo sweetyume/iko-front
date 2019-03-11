@@ -1,4 +1,6 @@
 .Articles {
+    height: 100%;
+
     h2 {
         margin: 1.5rem auto;
     }
@@ -15,3 +17,9 @@ img {
     border-radius: 0;
     height: 10rem;
 }
+
+// @media screen and (max-width: 600px) {
+//     .Articles {
+//         height: auto;
+//     }
+// }

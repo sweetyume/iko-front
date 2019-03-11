@@ -41,4 +41,10 @@
             flex-direction: column;
         }
     }
+
+    .active {
+        border-bottom: none;
+        color: black;
+        text-decoration: black;
+    }
 }

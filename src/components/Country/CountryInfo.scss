@@ -88,3 +88,19 @@
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+
+    .CountryInfo {
+        &__Infos {
+            display: flex;
+            flex-direction: column;
+
+            &__Details {
+                &:not(:last-of-type) {
+                    border-right: none;
+                }
+            }
+        }
+    }
+}
