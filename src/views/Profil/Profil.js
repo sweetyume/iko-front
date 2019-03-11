@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 
 import { globalPlug } from '../../contexts/UseContext';
-import Section from '../../components/Section/Section';
 import Button from '../../components/Button/Button';
 
 require('./Profil.scss');
@@ -21,7 +20,8 @@ class Profil extends Component {
 			login: '',
 			username: '',
 			password: '',
-			showModal: false
+			showModal: false,
+			articlesByUser: []
 		};
 	}
 
@@ -82,48 +82,58 @@ class Profil extends Component {
 			});
 	};
 
-	componentDidMount() {
+	componentDidMount = async () => {
+		await this.props.verifyCurrentUser();
+		await this.props.getAllArticlesByUserId();
+		console.log('articles', this.props.getAllArticlesByUserId);
 		this.setState({ user: this.props.currentUser });
 		console.log('lala', this.props.currentUser);
 		this.getProfil();
-	}
+	};
+
 	render() {
 		const { user } = this.state;
 		return (
-			<Section className="Profil" title="Mon Profil">
+			<div className="Profil">
+				<h2 className="Profil__Title">Mon Profil</h2>
 				<div className="Profil__Container">
-					<div className="Profil__Image">
+					<div className="Profil__Container__Image">
 						<img
 							src="https://avataaars.io/?avatarStyle=Circle&topType=Turban&accessoriesType=Blank&hatColor=Red&facialHairType=MoustacheFancy&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=Gray02&graphicType=Deer&eyeType=Cry&eyebrowType=SadConcerned&mouthType=Tongue&skinColor=Pale"
 							alt=""
 						/>
 					</div>
-					<div className="Profil__Description">
-						<p className="Profil__Description__Name">
-							pseudonyme: {user ? user.username : ''}
+					<div className="Profil__Container__Infos">
+						<p className="Profil__Container__Infos__Name">
+							{user ? user.username : ''}
 						</p>
-						<p className="Profil__Description__Email">
-							e-mail: {user ? user.login : ''}
+						<p className="Profil__Container__Infos__Email">
+							{user ? user.login : ''}
 						</p>
-					</div>
-					<div className="Profil__Settings">
 						<Button
-							className="Profil__Settings__Button"
+							className="Profil__Container__Infos__Button"
 							label="Editer"
 							onClick={this.handleOpenModal}
 						/>
+					</div>
+					<div className="Profil__Container__Articles">
+						<p>Mes articles</p>
+						<div>liste articles d'un user avec bouton supprimer et edit</div>
 						<Link to="/article">
 							<Button
-								className="Profil__Settings__Button"
+								className="Profil__Container__Articles__Button"
 								label="Ecrire un article"
 							/>
 						</Link>
+					</div>
+
+					<div className="Profil__Container__Settings">
 						<Modal
 							isOpen={this.state.showModal}
 							onHide={this.handleCloseModal}
 							contentLabel="Modifier son profil"
 						>
-							<h3>Informations</h3>
+							<h2>Informations</h2>
 							<form className="Login__Form" onSubmit={this.handleSubmit}>
 								<input
 									defaultValue={user ? user.username : ''}
@@ -138,23 +148,28 @@ class Profil extends Component {
 									onChange={this.handleChange}
 								/>
 								<input
-									value={user ? user.password : ''}
+									defaultValue={user ? user.password : ''}
 									type="password"
 									name="password"
 									onChange={this.handleChange}
 								/>
 							</form>
-							<div>
-								<Button label="Changer" onClick={this.editProfil} />
-								<Button label="Fermer" onClick={this.handleCloseModal} />
+							<div className="Profil__Modal__BtnContainer">
+								<Button
+									className="Profil__Modal__BtnContainer__Button"
+									label="Modifier"
+									onClick={this.editProfil}
+								/>
+								<Button
+									className="Profil__Modal__BtnContainer__Button"
+									label="Fermer"
+									onClick={this.handleCloseModal}
+								/>
 							</div>
 						</Modal>
 					</div>
-					<div className="Profil__Articles">
-						<p>Mes articles</p>
-					</div>
 				</div>
-			</Section>
+			</div>
 		);
 	}
 }
