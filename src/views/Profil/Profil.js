@@ -54,9 +54,11 @@ class Profil extends Component {
 	editProfil = () => {
 		const user_id = this.props.currentUser && this.props.currentUser.id;
 		const editUser = {
-			login: this.state.modifiedEmail ? this.state.modifiedEmail : this.state.user.login,
-			username: this.state.username
-				? this.state.usernameField
+			login: this.state.modifiedEmail
+				? this.state.modifiedEmail
+				: this.state.user.login,
+			username: this.state.modifiedUsername
+				? this.state.modifiedUsername
 				: this.state.user.username,
 			password: this.state.modifiedPassword
 				? this.state.modifiedPassword
@@ -120,7 +122,12 @@ class Profil extends Component {
 					</div>
 					<div className="Profil__Container__Articles">
 						<p>Mes articles</p>
-						<div>liste articles d'un user avec bouton supprimer et edit</div>
+						<div>
+							A vos plumes!
+							<br />
+							Contribuez à la plateforme en partageant vos expériences de
+							voyage, donner des conseils...
+						</div>
 						<Link to="/article">
 							<Button
 								className="Profil__Container__Articles__Button"

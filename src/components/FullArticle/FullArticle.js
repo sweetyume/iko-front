@@ -73,7 +73,8 @@ class FullArticle extends React.Component {
 	render() {
 		const { loadedArticle, imgUrl } = this.state;
 		const { currentUser } = this.props;
-		const userId = currentUser && currentUser.userId;
+		console.log({ currentUser });
+		const userId = currentUser && currentUser.username;
 		console.log({ userId });
 		let date = '';
 		let heure = '';
@@ -87,7 +88,7 @@ class FullArticle extends React.Component {
 				.format('LT');
 
 			image = this.state.imgUrl;
-			author = this.state.loadedArticle.userId;
+			author = userId;
 			console.log('article', this.state.loadedArticle);
 		}
 		return (

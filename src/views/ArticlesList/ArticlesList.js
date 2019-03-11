@@ -41,7 +41,7 @@ class ArticlesList extends Component {
 		return (
 			<React.Fragment>
 				<div className="Articles">
-					<h2>Destinations</h2>
+					<h2>Articles</h2>
 					<div className="Articles__Container">{allArticles}</div>
 				</div>
 			</React.Fragment>

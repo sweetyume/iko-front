@@ -5,6 +5,9 @@ import { globalPlug } from '../../contexts/UseContext';
 
 require('./Header.scss');
 class Header extends React.Component {
+	componentDidMount = () => {
+		this.props.verifyCurrentUser();
+	};
 	endSession = async () => {
 		await this.props.logout();
 		setTimeout(() => {

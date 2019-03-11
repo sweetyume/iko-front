@@ -35,8 +35,7 @@ const content = [
 ];
 class Astuces extends Component {
 	state = {
-		articleToDisplay: '',
-		articles: []
+		astuces: []
 	};
 	render() {
 		const { isAuth } = this.props;
