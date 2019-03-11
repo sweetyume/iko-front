@@ -21,7 +21,10 @@ class Profil extends Component {
 			username: '',
 			password: '',
 			showModal: false,
-			articlesByUser: []
+			articlesByUser: [],
+			modifiedUsername: '',
+			modifiedEmail: '',
+			modifiedPassword: ''
 		};
 	}
 
@@ -51,12 +54,12 @@ class Profil extends Component {
 	editProfil = () => {
 		const user_id = this.props.currentUser && this.props.currentUser.id;
 		const editUser = {
-			login: this.state.login ? this.state.login : this.state.user.login,
+			login: this.state.modifiedEmail ? this.state.modifiedEmail : this.state.user.login,
 			username: this.state.username
 				? this.state.usernameField
 				: this.state.user.username,
-			password: this.state.password
-				? this.state.passwordField
+			password: this.state.modifiedPassword
+				? this.state.modifiedPassword
 				: this.state.user.password
 		};
 
@@ -69,7 +72,7 @@ class Profil extends Component {
 				return res.data;
 			})
 			.then(res => {
-				this.props.verifyCurrentUser();
+				this.state.user = res
 				this.setState({
 					user: res.data,
 					showModal: false
@@ -138,19 +141,18 @@ class Profil extends Component {
 								<input
 									defaultValue={user ? user.username : ''}
 									type="text"
-									name="username"
+									name="modifiedUsername"
 									onChange={this.handleChange}
 								/>
 								<input
 									defaultValue={user ? user.login : ''}
 									type="email"
-									name="email"
+									name="modifiedEmail"
 									onChange={this.handleChange}
 								/>
 								<input
-									defaultValue={user ? user.password : ''}
 									type="password"
-									name="password"
+									name="modifiedPassword"
 									onChange={this.handleChange}
 								/>
 							</form>
