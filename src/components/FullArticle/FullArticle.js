@@ -115,21 +115,3 @@ class FullArticle extends React.Component {
 	}
 }
 export default globalPlug(withRouter(FullArticle));
-
-// const FullArticle = ({ title, country, imgUrl, description }) => {
-// 	return (
-// 		<div className="FullArticle">
-// 			<div className="FullArticle__Header">
-// 				<h2 className="FullArticle__Header__Title">{title}</h2>
-// 				<h3 className="FullArticle__Header__Country">{country}</h3>
-// 			</div>
-
-// 			<div className="FullArticle__Content">
-// 				<img className="FullArticle__Content__Image" src={imgUrl} />
-// 				<div className="FullArticle__Content__Description">
-// 					{description}
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };

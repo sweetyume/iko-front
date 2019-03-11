@@ -24,13 +24,15 @@ export class UseProvider extends React.Component {
 		isAuth: false,
 		currentUser: null,
 		articles: [],
-		article: ''
+		article: '',
+		articlesByUser: []
 	};
 
 	componentDidMount = async () => {
 		try {
 			await this.verifyCurrentUser();
-			this.getAllArticles();
+			await this.getAllArticles();
+			await this.getAllArticlesByUserId();
 		} catch (error) {
 			console.log(error);
 		}
@@ -72,10 +74,21 @@ export class UseProvider extends React.Component {
 		}
 	};
 
+	getAllArticlesByUserId = async () => {
+		let allArticlesByUserId = null;
+		try {
+			allArticlesByUserId = await axios.get('/users/:id/articles');
+			this.setState({ articlesByUser: allArticlesByUserId.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	action = {
 		verifyCurrentUser: this.verifyCurrentUser,
 		logout: this.logout,
-		getAllArticles: this.getAllArticles
+		getAllArticles: this.getAllArticles,
+		getAllArticlesByUserId: this.getAllArticlesByUserId
 	};
 
 	render() {
